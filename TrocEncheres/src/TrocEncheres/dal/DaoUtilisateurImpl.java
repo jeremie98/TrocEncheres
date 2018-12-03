@@ -12,7 +12,17 @@ import TrocEncheres.dal.ConnectionProvider;
 
 public class DaoUtilisateurImpl implements DaoUtilisateur{
 
-	private static final String INSERT = "insert into UTILISATEURS() values ()";
+	private static final String INSERT = "insert into UTILISATEURS(pseudo,"
+																+ "nom,"
+																+ "prenom,"
+																+ "email,"
+																+ "telephone,"
+																+ "rue,"
+																+ "code_postal,"
+																+ "ville,"
+																+ "mot_de_passe,"
+																+ "credit,"
+																+ "administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "update UTILISATEURS set ;";
 	
 	
@@ -32,6 +42,14 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 			
 			// Préparer la requete
 			stmt = conn.prepareStatement(INSERT);
+			stmt.setString(1, utilisateur.getPseudo());
+			stmt.setString(2, utilisateur.getNom());
+			stmt.setString(3, utilisateur.getPrenom());
+			stmt.setString(4, utilisateur.getEmail());
+			stmt.setString(5, String.valueOf(utilisateur.getTelephone()));
+			stmt.setString(6, utilisateur.getRue());
+			stmt.setString(7, utilisateur.getCodePostal());
+			
 			//stmt.setString
 			
 			//Executer la requete
@@ -40,7 +58,7 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 		}catch (SQLException e) {
 			
 			e.printStackTrace();
-		}
+		
 		try {
 			
 			throw new DALException("Erreur insert", e);
@@ -50,18 +68,23 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 		}
 	}finally {
 		
+		//Fermer la connexion
 		if(conn!=null) {
-			
 			try {
 				conn.close();
-			}catch(SQL) {
+			}catch(SQLException e) {
 				
-				
+				e.printStackTrace();
 			}
 		}
 		
 	}
-}
+		
+	}
+	
+
+
+
 
 	@Override
 	public void Delete(int id) {

@@ -9,7 +9,7 @@ public class Utilisateur {
 	private String email;
 	private int telephone;
 	private String rue;
-	private char codePostal;
+	private String codePostal;
 	private String ville;
 	private String motDePasse;
 	private int credit;
@@ -21,7 +21,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, int telephone, String rue,
-			char codePostal, String ville, String motDePasse) {
+			String codePostal, String ville, String motDePasse) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -91,11 +91,11 @@ public class Utilisateur {
 		this.rue = rue;
 	}
 
-	public char getCodePostal() {
+	public String getCodePostal() {
 		return codePostal;
 	}
 
-	public void setCodePostal(char codePostal) {
+	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
 
