@@ -1,9 +1,14 @@
 package TrocEncheres.bll;
 
-public class UtilisateurMger {
+import TrocEncheres.dal.DaoUtilisateur;
 
+public class UtilisateurMger {
+	// Attributs
+	DaoUtilisateur daoUtilisateur;
+
+	// Constructeur
 	public UtilisateurMger() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 }
