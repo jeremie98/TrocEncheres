@@ -11,6 +11,9 @@
 	<div id="header">
 		<h1>TrocEncheres.org</h1>
 	</div>
+	<div id="titre">
+		<h2>Connexion</h2>
+	</div>
 	
 	<div id="main">
 		<form action="get">
