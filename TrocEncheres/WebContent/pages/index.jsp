@@ -14,9 +14,18 @@
 	
 	<div id="main">
 		<form action="get">
-			<input type="text" name="user"></input>
-			<input type="password" name="password"></input>
+			<label for="user">Identifiant</label>
+			<input type="text" name="user"/><br>
+			<label for ="user"> Mot de passe</label>
+			<input type="password" name="password"/><br>
+			<input type="submit" value="Connexion"/>
+			<input type="checkbox" name="resetMdp" value="resetMdp">Resté connecté<br>
+			<a href="#">Mot de passe oublié</a>
 		</form>
+		<form>
+			<input type="submit" value="Creer un compte"/>
+		</form>
+		
 	</div>
 
 
