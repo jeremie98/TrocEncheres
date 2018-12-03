@@ -9,7 +9,7 @@ public interface DaoUtilisateur {
 	void Insert(Utilisateur utilisateur);
 	
 	
-	List<Utilisateur> listUser;
+	List<Utilisateur> listUser();
 	
 	void Delete(int id);
 	

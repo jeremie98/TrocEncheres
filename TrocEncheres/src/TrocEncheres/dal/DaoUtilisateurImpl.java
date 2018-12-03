@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import TrocEncheres.bo.Utilisateur;
 import TrocEncheres.dal.ConnectionProvider;
@@ -72,5 +73,11 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 	public void Update(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Utilisateur> listUser() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
