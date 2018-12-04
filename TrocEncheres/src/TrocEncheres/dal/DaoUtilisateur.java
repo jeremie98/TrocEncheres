@@ -8,10 +8,5 @@ public interface DaoUtilisateur {
 
 	void Insert(Utilisateur utilisateur);
 	
-	
-	List<Utilisateur> listUser();
-	
-	void Delete(int id);
-	
 	void Update(Utilisateur utilisateur);
 }

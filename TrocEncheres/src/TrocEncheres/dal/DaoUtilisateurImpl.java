@@ -38,8 +38,6 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	
-	
-	
 	@Override
 	public void Insert(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
@@ -93,28 +91,56 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 	}
 		
 	}
-	
-
-
-
-
-	@Override
-	public void Delete(int id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void Update(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
+try {
+			
+			// Récupérer une connexion
+			conn = ConnectionProvider.getConnection();
+			
+			// Préparer la requete
+			stmt = conn.prepareStatement(UPDATE);
+			stmt.setString(1, utilisateur.getPseudo());
+			stmt.setString(2, utilisateur.getNom());
+			stmt.setString(3, utilisateur.getPrenom());
+			stmt.setString(4, utilisateur.getEmail());
+			stmt.setString(5, String.valueOf(utilisateur.getTelephone()));
+			stmt.setString(6, utilisateur.getRue());
+			stmt.setString(7, utilisateur.getCodePostal());
+			stmt.setString(8, utilisateur.getVille());
+			
+			stmt.executeUpdate();
+
+}catch (SQLException e) {
+	
+	try {
+		throw new DALException("Update utilisateur failes - " + utilisateur, e);
+	} catch (DALException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+}finally {
+	
+	try {
+		if (stmt != null) {
+			
+			stmt.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
 		
+	}catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	
+}
 		
 		
 	}
 
-	@Override
-	public List<Utilisateur> listUser() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
