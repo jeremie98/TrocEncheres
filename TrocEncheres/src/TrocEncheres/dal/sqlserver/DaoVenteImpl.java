@@ -1,8 +1,9 @@
-package TrocEncheres.dal;
+package TrocEncheres.dal.sqlserver;
 
 import java.util.List;
 
 import TrocEncheres.bo.Vente;
+import TrocEncheres.dal.DaoVente;
 
 public class DaoVenteImpl implements DaoVente{
 

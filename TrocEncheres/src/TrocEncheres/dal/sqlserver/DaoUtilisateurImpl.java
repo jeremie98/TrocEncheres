@@ -1,13 +1,13 @@
-package TrocEncheres.dal;
+package TrocEncheres.dal.sqlserver;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
 import TrocEncheres.bo.Utilisateur;
 import TrocEncheres.dal.ConnectionProvider;
+import TrocEncheres.dal.DALException;
+import TrocEncheres.dal.DaoUtilisateur;
 
 public class DaoUtilisateurImpl implements DaoUtilisateur{
 
