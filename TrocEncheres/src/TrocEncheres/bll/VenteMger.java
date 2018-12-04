@@ -1,9 +1,18 @@
 package TrocEncheres.bll;
 
-public class VenteMger {
+import TrocEncheres.dal.DaoVente;
 
+public class VenteMger {
+	
+	// Attributs
+	DaoVente daoVente;
+
+	// Constructeur
 	public VenteMger() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+	
+	// Méthodes 
+	
 
 }
