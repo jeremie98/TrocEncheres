@@ -39,7 +39,7 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 	ResultSet rs = null;
 	
 	@Override
-	public void Insert(Utilisateur utilisateur) {
+	public void Insert(Utilisateur utilisateur) throws DALException{
 		// TODO Auto-generated method stub
 		try {
 			
@@ -65,35 +65,25 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 			//Executer la requete
 			stmt.executeUpdate();
 			
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			
-			e.printStackTrace();
+		} finally {
 		
-		try {
-			
-			throw new DALException("Erreur insert", e);
-		}catch (DALException e1) {
-			
-			e1.printStackTrace();
-		}
-	}finally {
-		
-		//Fermer la connexion
-		if(conn!=null) {
-			try {
-				conn.close();
-			}catch(SQLException e) {
-				
-				e.printStackTrace();
+			//Fermer la connexion
+			if(conn!=null) {
+				try {
+					conn.close();
+				}catch(SQLException e) {
+					
+					e.printStackTrace();
+				}
 			}
-		}
-		
 	}
 		
 	}
 
 	@Override
-	public void Update(Utilisateur utilisateur) {
+	public void Update(Utilisateur utilisateur) throws DALException{
 		// TODO Auto-generated method stub
 try {
 			

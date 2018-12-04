@@ -1,12 +1,10 @@
 package TrocEncheres.dal;
 
-import java.util.List;
-
 import TrocEncheres.bo.Utilisateur;
 
 public interface DaoUtilisateur {
 
-	void Insert(Utilisateur utilisateur);
+	void Insert(Utilisateur utilisateur) throws DALException;
 	
-	void Update(Utilisateur utilisateur);
+	void Update(Utilisateur utilisateur) throws DALException;
 }

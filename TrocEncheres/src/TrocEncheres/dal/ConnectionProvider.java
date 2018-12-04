@@ -15,7 +15,7 @@ private static DataSource dataSource;
 	static {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/cxion_animal_db");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/cxion_troc_db");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

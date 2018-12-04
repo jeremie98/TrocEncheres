@@ -6,12 +6,12 @@ import TrocEncheres.bo.Vente;
 
 public interface DaoVente {
 
-	void Insert(Vente vente);
+	void Insert(Vente vente) throws DALException;
 	
-	List<Vente> listVente();
+	List<Vente> listVente() throws DALException;
 	
-	void Delete(Vente vente);
+	void Delete(Vente vente) throws DALException;
 	
-	void Update(Vente vente);
+	void Update(Vente vente) throws DALException;
 	
 }
