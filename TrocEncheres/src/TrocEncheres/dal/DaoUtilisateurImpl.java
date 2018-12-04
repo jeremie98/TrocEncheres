@@ -23,7 +23,16 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 																+ "mot_de_passe,"
 																+ "credit,"
 																+ "administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String UPDATE = "update UTILISATEURS set ;";
+	private static final String UPDATE = "update UTILISATEURS set pseudo=?,"
+																+ "nom=?,"
+																+ "prenom?,"
+																+ "email=?,"
+																+ "telephone=?,"
+																+ "rue=?,"
+																+ "code_postal=?,"
+																+ "ville=?,"
+																+ "mot_de_passe=?,"
+																+ "where id=?;";
 	
 	
 	Connection conn = null;
@@ -49,6 +58,10 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 			stmt.setString(5, String.valueOf(utilisateur.getTelephone()));
 			stmt.setString(6, utilisateur.getRue());
 			stmt.setString(7, utilisateur.getCodePostal());
+			stmt.setString(8, utilisateur.getVille());
+			stmt.setString(9, utilisateur.getMotDePasse());
+			stmt.setInt(10, utilisateur.getCredit());
+			stmt.setBoolean(11, utilisateur.isAdministrateur());
 			
 			//stmt.setString
 			
@@ -95,6 +108,8 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 	@Override
 	public void Update(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
+		
+		
 		
 	}
 
