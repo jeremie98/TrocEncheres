@@ -1,5 +1,6 @@
 package TrocEncheres.dal.sqlserver;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,7 +48,7 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 			conn = ConnectionProvider.getConnection();
 			
 			// Préparer la requete
-			stmt = conn.prepareStatement(INSERT);
+			stmt = conn.prepareStatement(INSERT, stmt.RETURN_GENERATED_KEYS);
 			stmt.setString(1, utilisateur.getPseudo());
 			stmt.setString(2, utilisateur.getNom());
 			stmt.setString(3, utilisateur.getPrenom());
@@ -63,7 +64,16 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 			//stmt.setString
 			
 			//Executer la requete
-			stmt.executeUpdate();
+			int nbRows = stmt.executeUpdate();
+			if(nbRows ==1) {
+				
+				rs = stmt.getGeneratedKeys();
+				if(rs.next()) {
+					
+					utilisateur.setNoUtilisateur(rs.getInt(1));
+				}
+			}
+			
 			
 		} catch (SQLException e) {
 			
@@ -100,6 +110,7 @@ try {
 			stmt.setString(6, utilisateur.getRue());
 			stmt.setString(7, utilisateur.getCodePostal());
 			stmt.setString(8, utilisateur.getVille());
+			stmt.setString(9, utilisateur.getMotDePasse());
 			
 			stmt.executeUpdate();
 
