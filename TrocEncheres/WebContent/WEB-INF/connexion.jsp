@@ -27,7 +27,7 @@
 			<a href=#>Mot de passe oublié</a>
 		</form>
 <!-- 	<form action="get">	 -->
-			<a href="<%= request.getContextPath()%>/ServletInscription"><input value="Creer un compte"/></a>
+			<a href="<%= request.getContextPath()%>/ServletInscription"><input type="button" value="Creer un compte"/></a>
 <!-- 	</form> -->
 		
 	</div>

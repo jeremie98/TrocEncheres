@@ -4,6 +4,11 @@ import java.util.List;
 
 import TrocEncheres.bo.Vente;
 
+/**
+ * Interface déclarant les méthodes relatives à la communication avec la base de données de l'objet Vente
+ * @author jpelage2018
+ *
+ */
 public interface DaoVente {
 
 	void Insert(Vente vente) throws DALException;

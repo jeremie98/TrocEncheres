@@ -1,7 +1,16 @@
 package TrocEncheres.dal;
 
+/**
+ * Classe DAOFactory qui permet de renvoyer une instance de classe
+ * @author jpelage2018
+ *
+ */
 public class DaoFactory {
 
+	/**
+	 * Méthode qui renvoie une instance d'Utilisateur
+	 * @return un nouvel utilisateur
+	 */
 	public static DaoUtilisateur getUtilisateurDAO()  {
 		DaoUtilisateur daoUser=null;
 		try {
@@ -19,6 +28,10 @@ public class DaoFactory {
 		return daoUser; 
 	}
 	
+	/**
+	 * Méthode qui renvoie une instance de Vente
+	 * @return une nouvelle vente
+	 */
 	public static DaoVente getVenteDAO()  {
 		DaoVente daoVente=null;
 		try {
