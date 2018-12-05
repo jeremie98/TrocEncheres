@@ -19,7 +19,7 @@
 	</div>
 	
 	<div id="main">
-		<form action="get">
+		<form method="post" action="/connexion">
 			<label for="user">Identifiant</label><input type="text" name="user" id="user"/><br>
 			<label for ="pass"> Mot de passe</label><input type="password" name="pass" id="pass"/><br>
 			<input type="submit" value="Connexion"/>
@@ -27,7 +27,7 @@
 			<a href=#>Mot de passe oublié</a>
 		</form>
 <!-- 	<form action="get">	 -->
-			<a href="<%= request.getContextPath()%>/ServletInscription"><input type="submit" value="Creer un compte"/></a>
+			<a href="<%= request.getContextPath()%>/ServletInscription"><input value="Creer un compte"/></a>
 <!-- 	</form> -->
 		
 	</div>
