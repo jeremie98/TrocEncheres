@@ -15,43 +15,28 @@ import TrocEncheres.dal.DaoUtilisateur;
  * @author jpelage2018
  *
  */
-public class DaoUtilisateurImpl implements DaoUtilisateur{
 
-	private static final String INSERT = "insert into UTILISATEURS(pseudo,"
-																+ "nom,"
-																+ "prenom,"
-																+ "email,"
-																+ "telephone,"
-																+ "rue,"
-																+ "code_postal,"
-																+ "ville,"
-																+ "mot_de_passe,"
-																+ "credit,"
-																+ "administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String UPDATE = "update UTILISATEURS set pseudo=?,"
-																+ "nom=?,"
-																+ "prenom?,"
-																+ "email=?,"
-																+ "telephone=?,"
-																+ "rue=?,"
-																+ "code_postal=?,"
-																+ "ville=?,"
-																+ "mot_de_passe=?,"
-																+ "where id=?;";
-	
-	
+public class DaoUtilisateurImpl implements DaoUtilisateur {
+
+	private static final String INSERT = "insert into UTILISATEURS(pseudo," + "nom," + "prenom," + "email,"
+			+ "telephone," + "rue," + "code_postal," + "ville," + "mot_de_passe," + "credit,"
+			+ "administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String UPDATE = "update UTILISATEURS set pseudo=?," + "nom=?," + "prenom?," + "email=?,"
+			+ "telephone=?," + "rue=?," + "code_postal=?," + "ville=?," + "mot_de_passe=?," + "where id=?;";
+	private static final String SELECT = "select no_utilisateur from UTILISATEURS where pseudo=? and mot_de_passe=? ;";
+
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
-	
+
 	@Override
 	public void Insert(Utilisateur utilisateur) throws DALException{
 		// TODO Auto-generated method stub
 		try {
-			
+
 			// Récupérer une connexion
 			conn = ConnectionProvider.getConnection();
-			
+
 			// Préparer la requete
 			stmt = conn.prepareStatement(INSERT, stmt.RETURN_GENERATED_KEYS);
 			stmt.setString(1, utilisateur.getPseudo());
@@ -93,6 +78,7 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 					e.printStackTrace();
 				}
 			}
+
 	}
 		
 	}
@@ -100,11 +86,11 @@ public class DaoUtilisateurImpl implements DaoUtilisateur{
 	@Override
 	public void Update(Utilisateur utilisateur) throws DALException{
 		// TODO Auto-generated method stub
-try {
-			
+		try {
+
 			// Récupérer une connexion
 			conn = ConnectionProvider.getConnection();
-			
+
 			// Préparer la requete
 			stmt = conn.prepareStatement(UPDATE);
 			stmt.setString(1, utilisateur.getPseudo());
@@ -116,37 +102,88 @@ try {
 			stmt.setString(7, utilisateur.getCodePostal());
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMotDePasse());
-			
+			stmt.setString(9, utilisateur.getMotDePasse());
+
 			stmt.executeUpdate();
 
-}catch (SQLException e) {
-	
-	try {
-		throw new DALException("Update utilisateur failes - " + utilisateur, e);
-	} catch (DALException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-	
-}finally {
-	
-	try {
-		if (stmt != null) {
-			
-			stmt.close();
+		} catch (SQLException e) {
+
+			try {
+				throw new DALException("Update utilisateur failes - " + utilisateur, e);
+			} catch (DALException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		} finally {
+
+			try {
+				if (stmt != null) {
+
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
 		}
-		if (conn != null) {
-			conn.close();
-		}
-		
-	}catch (SQLException e) {
-		
-		e.printStackTrace();
+
 	}
-	
-}
-		
-		
+
+	@Override
+	public boolean checkUser(String pseudo, String mdp) throws DALException {
+		// TODO Auto-generated method stub
+		boolean trouver = false;
+		try {
+
+			conn = ConnectionProvider.getConnection();
+			stmt = conn.prepareStatement(SELECT);
+			stmt.setString(1, pseudo);
+			stmt.setString(2, mdp);
+
+			rs = stmt.executeQuery();
+			if (rs == null) {
+
+				trouver = false;
+			} else if (rs != null) {
+
+				trouver = true;
+
+			}
+		}
+
+		catch (SQLException e) {
+
+			try {
+				throw new DALException("Select utilisateur failes - ", e);
+			} catch (DALException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		} finally {
+
+			try {
+				if (stmt != null) {
+
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+		}
+		return trouver;
 	}
 
 }

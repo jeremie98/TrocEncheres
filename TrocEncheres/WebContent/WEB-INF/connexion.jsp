@@ -19,17 +19,16 @@
 	</div>
 	
 	<div id="main">
-		<form method="post" action="/connexion">
+		<form method="post" action="<%= request.getContextPath() %>/connexion">
 			<label for="user">Identifiant</label><input type="text" name="user" id="user"/><br>
 			<label for ="pass"> Mot de passe</label><input type="password" name="pass" id="pass"/><br>
 			<input type="submit" value="Connexion"/>
 			<input type="checkbox" name="resetPass" id="resetPass" >Resté connecté<br>
 			<a href=#>Mot de passe oublié</a>
+
 		</form>
-<!-- 	<form action="get">	 -->
-			<a href="<%= request.getContextPath()%>/ServletInscription"><input type="button" value="Creer un compte"/></a>
-<!-- 	</form> -->
-		
+
+			<a href="<%= request.getContextPath()%>/inscription"><input type="button" value="Creer un compte"/></a>
 	</div>
 
 

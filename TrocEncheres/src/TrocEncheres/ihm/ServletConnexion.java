@@ -2,10 +2,13 @@ package TrocEncheres.ihm;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
+import TrocEncheres.bll.BLLException;
+import TrocEncheres.bll.UtilisateurMger;
 
 /**
  * Servlet Connexion qui va redirigé vers la page de connexion, et traité les informations 
@@ -36,8 +39,28 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	
+		try {
+			boolean trouver = false;
+			UtilisateurMger userManag = new UtilisateurMger();
+		String pseudo = request.getParameter("user");
+		String mdp = request.getParameter("pass");
+			
+		
+		if (userManag.checkUser(pseudo, mdp) == false) {
+			
+			trouver = false;
+			
+		}
+		if (userManag.checkUser(pseudo, mdp) == true);
+			
+		trouver = true;
+		request.getRequestDispatcher("WEB-INF/creer_compte.jsp").forward(request, response);
+			
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
