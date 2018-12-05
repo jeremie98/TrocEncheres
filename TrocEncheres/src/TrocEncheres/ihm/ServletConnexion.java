@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletAccueil
+ * Servlet Connexion qui va redirigé vers la page de connexion, et traité les informations 
+ * isssues du formulaire de connexion
+ * @author jpelage2018
+ *
  */
-@WebServlet("/ServletConnexion")
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

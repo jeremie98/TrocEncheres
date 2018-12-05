@@ -5,15 +5,31 @@ import TrocEncheres.dal.DALException;
 import TrocEncheres.dal.DaoFactory;
 import TrocEncheres.dal.DaoUtilisateur;
 
+/**
+ * Classe UtilisateurMger (Manager) qui implémente les méthodes de l'objet DaoUtilisateur
+ * @author jpelage2018
+ *
+ */
 public class UtilisateurMger {
+	// Attributs
 	DaoUtilisateur daoUtilisateur = DaoFactory.getUtilisateurDAO();
 	
 	// Constructeur
+	
+	/**
+	 * Constructeur qui hérite du constructeur de la classe Object
+	 */
 	public UtilisateurMger() {
 		super();
 	}
 	
 	// Méthodes
+	
+	/**
+	 * Méthode insérant un utilisateur dans la base 
+	 * @param utilisateur
+	 * @throws BLLException
+	 */
 	public void insert(Utilisateur utilisateur) throws BLLException{
 		try {
 			daoUtilisateur.Insert(utilisateur);
@@ -22,6 +38,11 @@ public class UtilisateurMger {
 		}
 	}
 	
+	/**
+	 * Méthode mettant à jour les informations de l'utilisateur dans la base
+	 * @param utilisateur
+	 * @throws BLLException
+	 */
 	public void update(Utilisateur utilisateur) throws BLLException{
 		try {
 			daoUtilisateur.Update(utilisateur);

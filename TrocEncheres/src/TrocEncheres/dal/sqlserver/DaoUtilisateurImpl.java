@@ -10,6 +10,11 @@ import TrocEncheres.dal.ConnectionProvider;
 import TrocEncheres.dal.DALException;
 import TrocEncheres.dal.DaoUtilisateur;
 
+/**
+ * Classe DAO qui permet à l'utilisateur de communiquer avec la base de données
+ * @author jpelage2018
+ *
+ */
 public class DaoUtilisateurImpl implements DaoUtilisateur{
 
 	private static final String INSERT = "insert into UTILISATEURS(pseudo,"

@@ -5,6 +5,11 @@ import java.util.List;
 import TrocEncheres.bo.Vente;
 import TrocEncheres.dal.DaoVente;
 
+/**
+ * Classe DAO qui permet à une Vente de communiquer avec la base de données
+ * @author jpelage2018
+ *
+ */
 public class DaoVenteImpl implements DaoVente{
 
 	@Override
