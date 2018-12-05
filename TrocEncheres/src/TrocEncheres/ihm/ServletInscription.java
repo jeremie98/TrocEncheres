@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import TrocEncheres.bll.BLLException;
+import TrocEncheres.bll.UtilisateurMger;
+import TrocEncheres.bo.Utilisateur;
+
 /**
  * Servlet Inscription qui va redirigé vers la page d'inscription, et traité les informations 
  * isssues du formulaire d'inscription
@@ -27,7 +31,26 @@ public class ServletInscription extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+				try {
+					String pseudo = req.getParameter("pseudo").trim();
+				int tel = Integer.parseInt(req.getParameter("tel").trim());
+				String cp = req.getParameter("cp").trim();
+				String pass = req.getParameter("pass").trim();
+				String mail = req.getParameter("email").trim();
+				String rue = req.getParameter("rue").trim();
+				String ville = req.getParameter("ville").trim();
+				String confirm = req.getParameter("confPass").trim();
+				String nom = req.getParameter("nom").trim();
+				String prenom = req.getParameter("prenom").trim();
+			
+				Utilisateur user = new Utilisateur(pseudo,nom,prenom,mail,tel,rue,cp,ville,pass);
+				
+				UtilisateurMger userManag = new UtilisateurMger(); 
+					userManag.insert(user);
+				} catch (BLLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	}
 	
 	

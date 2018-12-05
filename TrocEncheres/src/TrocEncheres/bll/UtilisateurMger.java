@@ -50,5 +50,23 @@ public class UtilisateurMger {
 			throw new BLLException("Update failed ----", e);
 		}
 	}
+	
+	public boolean checkUser(String pseudo, String mdp) throws BLLException{
+		boolean trouver = false;
+		try {
+			if(
+			daoUtilisateur.checkUser(pseudo, mdp) == true) {
+				
+				trouver = true;
+			}else if (daoUtilisateur.checkUser(pseudo, mdp) == false){
+				
+				trouver = false;
+			}
+			
+		} catch(DALException e ) {
+			throw new BLLException("Check User failed ----", e );
+		}
+		return trouver;
+	}
 
 }
