@@ -11,7 +11,7 @@ import TrocEncheres.bo.Vente;
  */
 public interface DaoVente {
 
-	void Insert(Vente vente) throws DALException;
+	void Insert(Vente vente, int no_utilisateur) throws DALException;
 	
 	List<Vente> listVente() throws DALException;
 	

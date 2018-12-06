@@ -1,6 +1,6 @@
 package TrocEncheres.bo;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Classe représentant une vente, mise à dispostion d'un article

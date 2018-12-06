@@ -23,15 +23,15 @@ public class VenteMger {
 	}
 	
 	// Méthodes 
-	
+
 	/**
 	 * Méthode insérant une vente en base
 	 * @param vente
 	 * @throws BLLException
 	 */
-	public void insert(Vente vente) throws BLLException{
+	public void insert(Vente vente, int no_utilisateur) throws BLLException{
 		try {
-			daoVente.Insert(vente);
+			daoVente.Insert(vente, no_utilisateur);
 		} catch(DALException e) {
 			throw new BLLException("Insert failed ------", e);
 		}
@@ -49,7 +49,4 @@ public class VenteMger {
 			throw new BLLException("Delete failed ------", e);
 		}
 	}
-	
-	
-	
 }
