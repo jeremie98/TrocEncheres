@@ -12,6 +12,7 @@ import TrocEncheres.dal.DaoVente;
  */
 public class DaoVenteImpl implements DaoVente{
 
+	
 	@Override
 	public void Insert(Vente vente) {
 		// TODO Auto-generated method stub

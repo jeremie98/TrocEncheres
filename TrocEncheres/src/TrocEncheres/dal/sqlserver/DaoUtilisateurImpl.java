@@ -24,7 +24,10 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 	private static final String UPDATE = "update UTILISATEURS set pseudo=?," + "nom=?," + "prenom?," + "email=?,"
 			+ "telephone=?," + "rue=?," + "code_postal=?," + "ville=?," + "mot_de_passe=?," + "where id=?;";
 	private static final String SELECT = "select no_utilisateur from UTILISATEURS where pseudo=? and mot_de_passe=? ;";
-
+	private static final String SELECTNOUSER = "select no_utilisateur from UTILISATEURS where pseudo=? ";
+	private static final String SELECTALL = "select no_utilisateur, pseudo, nom, prenom, email, telephone, "
+			+ "rue, code_postal, ville, mot_de_passe, credit, administrateur where no_utilisateur = ?";
+	
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
@@ -107,14 +110,8 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-
-			try {
-				throw new DALException("Update utilisateur failes - " + utilisateur, e);
-			} catch (DALException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
+			throw new DALException("Update utilisateur failed ---- " + utilisateur, e);
+			
 		} finally {
 
 			try {
@@ -155,17 +152,9 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 				trouver = true;
 
 			}
-		}
-
-		catch (SQLException e) {
-
-			try {
-				throw new DALException("Select utilisateur failes - ", e);
-			} catch (DALException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
+		} catch (SQLException e) {
+			throw new DALException("Select utilisateur failed ---- ", e);
+			
 		} finally {
 
 			try {
@@ -184,6 +173,73 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 
 		}
 		return trouver;
+	}
+
+	@Override
+	public int selectNoUtilisateur(String pseudo) throws DALException {
+		int noutilisateur = 0;
+		
+		try {
+			// récupération de la connexion
+			conn = ConnectionProvider.getConnection();
+			
+			// préparation de la requête
+			stmt = conn.prepareStatement(SELECTNOUSER);
+			stmt.setString(1, pseudo);
+			
+			// exécution de a la requête
+			rs = stmt.executeQuery();
+			if(rs != null) {
+				noutilisateur = rs.getInt("no_utilisateur");
+			}
+			
+		} catch(SQLException e){
+			throw new DALException("Select noUtilisateur failed -----", e);
+
+		} finally {
+
+			try {
+				if (stmt != null) {
+
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return noutilisateur;
+	}
+
+	@Override
+	public Utilisateur selectAll(int idutilisateur) throws DALException {
+		Utilisateur utilisateur = null;
+		try {
+			// récupération de la connexion
+			conn = ConnectionProvider.getConnection();
+			
+			// préparation de la requête
+			stmt = conn.prepareStatement(SELECTALL);
+			stmt.setInt(1, idutilisateur);
+			// exécution
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), 
+						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getInt("telephone"), 
+						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+			}
+			
+		} catch(SQLException e) {
+			throw new DALException("SelectAll failed ------", e);
+		}
+		
+		return utilisateur;
 	}
 
 }

@@ -43,24 +43,23 @@ public class ServletConnexion extends HttpServlet {
 		try {
 			boolean trouver = false;
 			UtilisateurMger userManag = new UtilisateurMger();
-		String pseudo = request.getParameter("user");
-		String mdp = request.getParameter("pass");
+			String pseudo = request.getParameter("user");
+			String mdp = request.getParameter("pass");
 			
 		
 		if (userManag.checkUser(pseudo, mdp) == false) {
-			
 			trouver = false;
-			
 		}
-		if (userManag.checkUser(pseudo, mdp) == true);
+		if (userManag.checkUser(pseudo, mdp) == true) {
+			request.getSession().setAttribute("idutilisateur", userManag.selectNoUtilisateur(pseudo));
 			
-		trouver = true;
-		request.getRequestDispatcher("WEB-INF/creer_compte.jsp").forward(request, response);
-			
+			trouver = true;
+			request.getRequestDispatcher("WEB-INF/creer_compte.jsp").forward(request, response);	
+		}
+		
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }
