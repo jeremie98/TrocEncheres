@@ -31,26 +31,31 @@ public class ServletInscription extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-				try {
-					String pseudo = req.getParameter("pseudo").trim();
-				int tel = Integer.parseInt(req.getParameter("tel").trim());
-				String cp = req.getParameter("cp").trim();
-				String pass = req.getParameter("pass").trim();
-				String mail = req.getParameter("email").trim();
-				String rue = req.getParameter("rue").trim();
-				String ville = req.getParameter("ville").trim();
-				String confirm = req.getParameter("confPass").trim();
-				String nom = req.getParameter("nom").trim();
-				String prenom = req.getParameter("prenom").trim();
+		try {
+			UtilisateurMger userManag = new UtilisateurMger(); 
+			Utilisateur utilisateur;
+			String pseudo = req.getParameter("pseudo").trim();
+			int tel = Integer.parseInt(req.getParameter("tel").trim());
+			String cp = req.getParameter("cp").trim();
+			String pass = req.getParameter("pass").trim();
+			String mail = req.getParameter("email").trim();
+			String rue = req.getParameter("rue").trim();
+			String ville = req.getParameter("ville").trim();
+			String confirm = req.getParameter("confPass").trim();
+			String nom = req.getParameter("nom").trim();
+			String prenom = req.getParameter("prenom").trim();
+			utilisateur = new Utilisateur(pseudo,nom,prenom,mail,tel,rue,cp,ville,pass);
 			
-				Utilisateur user = new Utilisateur(pseudo,nom,prenom,mail,tel,rue,cp,ville,pass);
-				
-				UtilisateurMger userManag = new UtilisateurMger(); 
-					userManag.insert(user);
-				} catch (BLLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			// si les mots de passe correspondent on réalise l'insert
+			if(pass.equals(confirm)) {
+				userManag.insert(utilisateur);
+			}	
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		
+		// redirection vers la page de connexion
+		req.getRequestDispatcher("WEB-INF/connexion.jsp").forward(req, resp);
 	}
 	
 	

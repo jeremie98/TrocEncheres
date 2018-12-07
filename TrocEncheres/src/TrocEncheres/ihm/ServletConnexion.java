@@ -39,28 +39,24 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		try {
-			boolean trouver = false;
 			UtilisateurMger userManag = new UtilisateurMger();
-		String pseudo = request.getParameter("user");
-		String mdp = request.getParameter("pass");
+			String pseudo = request.getParameter("user").trim();
+			String mdp = request.getParameter("pass").trim();
 			
-		
-		if (userManag.checkUser(pseudo, mdp) == false) {
-			
-			trouver = false;
-			
-		}
-		if (userManag.checkUser(pseudo, mdp) == true);
-			
-		trouver = true;
-		request.getRequestDispatcher("WEB-INF/creer_compte.jsp").forward(request, response);
-			
+			if (userManag.checkUser(pseudo, mdp) == false) {
+				request.setAttribute("erreurConnexion", "Erreur de connexion, réessayer...");
+				// redirection vers la page de connexion car échec
+				request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);	
+			}
+			if (userManag.checkUser(pseudo, mdp) == true) {
+				// mise en session de l'utilisateur 
+				request.getSession().setAttribute("idutilisateur", userManag.selectNoUtilisateur(pseudo));
+				// redirection vers la page d'accueil
+				request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);	
+			}
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }

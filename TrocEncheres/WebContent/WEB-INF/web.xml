@@ -2,25 +2,54 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>TrocEncheres</display-name>
   <welcome-file-list>
-  	<welcome-file>connexion</welcome-file>
+    <welcome-file>connexion</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-	<servlet-name>ServletConnexion</servlet-name>
-	<servlet-class>TrocEncheres.ihm.ServletConnexion</servlet-class>
+    <servlet-name>ServletConnexion</servlet-name>
+    <servlet-class>TrocEncheres.ihm.ServletConnexion</servlet-class>
   </servlet>
   <servlet-mapping>
-	<servlet-name>ServletConnexion</servlet-name>
-	<url-pattern>/connexion</url-pattern>
+    <servlet-name>ServletConnexion</servlet-name>
+    <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
   <servlet>
-	<servlet-name>ServletInscription</servlet-name>
-	<servlet-class>TrocEncheres.ihm.ServletInscription</servlet-class>
+    <servlet-name>ServletListeEncheres</servlet-name>
+    <servlet-class>TrocEncheres.ihm.ServletListeEncheres</servlet-class>
   </servlet>
   <servlet-mapping>
-	<servlet-name>ServletInscription</servlet-name>
-	<url-pattern>/inscription</url-pattern>
+    <servlet-name>ServletListeEncheres</servlet-name>
+    <url-pattern>/listeencheres</url-pattern>
   </servlet-mapping>
-  
-  
+  <servlet>
+    <servlet-name>ServletInscription</servlet-name>
+    <servlet-class>TrocEncheres.ihm.ServletInscription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletInscription</servlet-name>
+    <url-pattern>/inscription</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ServletMonProfil</servlet-name>
+    <servlet-class>TrocEncheres.ihm.ServletMonProfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletMonProfil</servlet-name>
+    <url-pattern>/monprofil</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ServletProfil</servlet-name>
+    <servlet-class>TrocEncheres.ihm.ServletProfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletProfil</servlet-name>
+    <url-pattern>/profil</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ServletVente</servlet-name>
+    <servlet-class>TrocEncheres.ihm.ServletVente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVente</servlet-name>
+    <url-pattern>/nouvellevente</url-pattern>
+  </servlet-mapping>
 </web-app>

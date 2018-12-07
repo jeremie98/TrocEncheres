@@ -14,4 +14,8 @@ public interface DaoUtilisateur {
 	void Update(Utilisateur utilisateur) throws DALException;
 	
 	boolean checkUser(String pseudo, String mdp) throws DALException;
+	
+	int selectNoUtilisateur(String pseudo) throws DALException;
+	
+	Utilisateur selectAll(int idutilisateur) throws DALException;
 }

@@ -6,7 +6,6 @@ package TrocEncheres.bll;
  *
  */
 public class BLLException extends Exception{
-
 	/**
 	 * 
 	 */
