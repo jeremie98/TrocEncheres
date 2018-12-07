@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profil</title>
+	<meta charset="utf-8">
+	<!-- lien vers feuille bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<!-- lien librarie jQuery et Javascript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+		<a href="<%= request.getContextPath()%>/listeencheres" class="navbar-brand">TrocEncheres.org</a>
+	</nav>
+
+	<!--  Debut div container -->
+	<div class="container">
+
+		<h2 class="text-center">Profil</h2>
+
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Pseudo :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.pseudo }"/></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Nom :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.nom }"/></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Prénom :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.prenom }"/></div>
+				</div>
+			</div>
+				
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Email :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.email }"/></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Telephone :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.telephone }"/></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Rue :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.rue }"/></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Code postal :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.codepostal }"/></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2">Ville :</div>
+				</div>
+				<div class="form-group col-sm-2">
+					<div class="d-inline-flex p-2"><c:out value="${requestScope.ville }"/></div>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center col-sm-12">
+				<div class="form-group">
+				<!-- Si propriétaire du compte, possibilité de modifier -->
+				<a href="<%= request.getContextPath() %>/monprofil" class="navbar-brand"><button type="button" class="btn btn-primary">Modifier</button></a>
+				<a href="<%= request.getContextPath() %>/listeencheres" class="navbar-brand"><button type="button" class="btn btn-outline-secondary">Retour</button></a>
+					
+				</div>
+			</div>
+	</div>	
+</body>
+</html>

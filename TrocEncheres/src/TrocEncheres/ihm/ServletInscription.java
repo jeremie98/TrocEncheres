@@ -53,6 +53,9 @@ public class ServletInscription extends HttpServlet{
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
+		
+		// redirection vers la page de connexion
+		req.getRequestDispatcher("WEB-INF/connexion.jsp").forward(req, resp);
 	}
 	
 	

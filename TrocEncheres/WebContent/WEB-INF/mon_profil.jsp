@@ -18,7 +18,7 @@
 <body>
 
 	<nav class="navbar navbar-dark bg-dark">
-		<a href="connexion.jsp" class="navbar-brand">TrocEncheres.org</a>
+		<a href="<%= request.getContextPath() %>/listeencheres" class="navbar-brand">TrocEncheres.org</a>
 	</nav>
 	<!--  Debut div container -->
 	<div class="container">
@@ -26,7 +26,7 @@
 		<h2 class="text-center">Mon profil</h2>
 
 		
-		<form method="get" class="border border-primary">
+		<form method="post" action="<%= request.getContextPath() %>/monprofil" class="border border-primary">
 		
 		
 			<div class="row justify-content-center">
@@ -37,7 +37,7 @@
 					<input type="text" class="form-control" name="nom" placeholder="Nom" />
 				</div>
 			</div>
-			
+		
 			<div class="row justify-content-center">
 				<div class="form-group col-sm-5">
 					<input type="text" class="form-control" name="prenom" placeholder="Prenom" />
@@ -85,8 +85,8 @@
 			<div class="row justify-content-center">
 				<div class="form-group col-sm-5">
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
-					<button type="submit" class="btn btn-danger">Supprimer compte</button>
-					<a href="connexion.jsp" class="navbar-brand"><button type="button" class="btn btn-outline-secondary">Retour</button></a>
+					<button type="button" class="btn btn-danger">Supprimer compte</button>
+					<a href="<%= request.getContextPath() %>/listeencheres" class="navbar-brand"><button type="button" class="btn btn-outline-secondary">Retour</button></a>
 				</div>
 			</div>
 			

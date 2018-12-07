@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletVente
+ * Servlet implementation class ServletAccueil
  */
-@WebServlet("/ServletVente")
-public class ServletVente extends HttpServlet {
+@WebServlet("/ServletAccueil")
+public class ServletListeEncheres extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletVente() {
+    public ServletListeEncheres() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,16 +26,16 @@ public class ServletVente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// redirection vers la page de nouvelle vente
-		request.getRequestDispatcher("WEB-INF/vendre.jsp").forward(request, response);;
+		// redirection vers la page d'accueil
+		request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// enregistrement d'une nouvelle vente
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

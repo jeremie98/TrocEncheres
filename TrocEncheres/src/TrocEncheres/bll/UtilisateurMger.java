@@ -176,13 +176,10 @@ public class UtilisateurMger {
 		boolean trouver = false;
 		try {
 			if(daoUtilisateur.checkUser(pseudo, mdp) == true) {
-				
 				trouver = true;
-			}else if (daoUtilisateur.checkUser(pseudo, mdp) == false){
-				
+			} else {
 				trouver = false;
 			}
-			
 		} catch(DALException e ) {
 			throw new BLLException("Check User failed ----", e );
 		}

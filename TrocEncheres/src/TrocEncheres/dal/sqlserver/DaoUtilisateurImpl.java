@@ -23,10 +23,11 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 			+ "administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "update UTILISATEURS set pseudo=?," + "nom=?," + "prenom?," + "email=?,"
 			+ "telephone=?," + "rue=?," + "code_postal=?," + "ville=?," + "mot_de_passe=?," + "where id=?;";
-	private static final String SELECT = "select no_utilisateur from UTILISATEURS where pseudo=? and mot_de_passe=? ;";
+	private static final String SELECTUSER = "select pseudo, mot_de_passe from UTILISATEURS where pseudo=?;";
 	private static final String SELECTNOUSER = "select no_utilisateur from UTILISATEURS where pseudo=? ";
 	private static final String SELECTALL = "select no_utilisateur, pseudo, nom, prenom, email, telephone, "
-			+ "rue, code_postal, ville, mot_de_passe, credit, administrateur where no_utilisateur = ?";
+			+ "rue, code_postal, ville, mot_de_passe, credit, administrateur from UTILISATEURS "
+			+ "where no_utilisateur = ?";
 	
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -134,23 +135,23 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 
 	@Override
 	public boolean checkUser(String pseudo, String mdp) throws DALException {
-		// TODO Auto-generated method stub
 		boolean trouver = false;
 		try {
-
+			// récupération de la connexion
 			conn = ConnectionProvider.getConnection();
-			stmt = conn.prepareStatement(SELECT);
+			// préparation de la connexion
+			stmt = conn.prepareStatement(SELECTUSER);
 			stmt.setString(1, pseudo);
-			stmt.setString(2, mdp);
-
+		
+			// exécution
 			rs = stmt.executeQuery();
-			if (rs == null) {
-
-				trouver = false;
-			} else if (rs != null) {
-
-				trouver = true;
-
+			
+			if(rs.next()) {
+				if(rs.getString("pseudo").equals(pseudo.trim()) && rs.getString("mot_de_passe").equals(mdp.trim())) {
+					trouver = true;
+				}else {
+					trouver = false;
+				}
 			}
 		} catch (SQLException e) {
 			throw new DALException("Select utilisateur failed ---- ", e);
@@ -189,7 +190,7 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 			
 			// exécution de a la requête
 			rs = stmt.executeQuery();
-			if(rs != null) {
+			if(rs.next()) {
 				noutilisateur = rs.getInt("no_utilisateur");
 			}
 			

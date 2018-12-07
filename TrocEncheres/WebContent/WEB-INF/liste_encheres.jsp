@@ -18,14 +18,15 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="connexion.jsp">TrocEnchères.0rg</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>  
+  <a class="navbar-brand" href="<%= request.getContextPath()%>/listeencheres">TrocEnchères.0rg</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+    <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="nav navbar-nav">
-      <a class="nav-item nav-link" href="<%= request.getContextPath() %>/monprofil"><span class="glyphicon glyphicon-user"></span> Mon profil</a>
-      <a class="nav-item nav-link" href="<%= request.getContextPath() %>/connexion"><span class="glyphicon glyphicon-log-iout"></span> Déconnexion</a>
+    <div class="nav navbar-nav ">
+      <a href="<%= request.getContextPath() %>/nouvellevente" ><span class="glyphicon glyphicon-log-iout"> Vendre un article</span></a>
+      <a href="<%= request.getContextPath() %>/profil" ><span class="glyphicon glyphicon-user "> Mon profil</span></a>
+      <a href="<%= request.getContextPath() %>/#" ><span class="glyphicon glyphicon-log-iout"> Déconnexion</span></a>
     </div>
   </div>
 </nav>
