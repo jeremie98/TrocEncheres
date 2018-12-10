@@ -30,44 +30,102 @@
     </div>
   </div>
 </nav>
+	<h2 class="text-center">Liste des encheres</h2>
 	<div class="container">
-		<h2 class="text-center">Liste des encheres</h2>
-<!-- 		Checkboxes de filtre -->
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value="" name="vente">
-			<label class="form-check-label" for="defaultCheck1"> Mes ventes</label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value="" name="enchere">
-			<label class="form-check-label" for="defaultCheck1"> Mes enchères en cours</label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value="" name="achat">
-			<label class="form-check-label" for="defaultCheck1"> Mes acquisitions</label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value="" name="achat">
-			<label class="form-check-label" for="defaultCheck1"> Autres enchères</label>
-		</div>
-		
-<!-- 		Barre de recherche -->
-		<form class="form-inline">
-			<input class="form-control mr-sm-2" type="search" placeholder="Mots clé" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Rechercher</button>
-		</form>
-		
-		<p>Catégories</p>
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" 
-			id="dropdownMenuButton" data-toggle="dropdown" 
-			aria-haspopup="true" aria-expanded="false">Categorie</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" href="#">Action</a>
-			<a class="dropdown-item" href="#">Another action</a>
-			<a class="dropdown-item" href="#">Something else here</a>
+	<!-- /!\/!\ 
+	Barre de recherche ne fonctionne pas correctement ! a remplacer !!! 
+	/!\/!\ -->
+				<input class="form-control" id="myInput" type="text" placeholder="Search..">
+		<div class="row justify-content-center">
+			<!-- Checkboxes de filtre -->
+			<div class="col sm">
+				<div class="form-check justify-content-center">
+					<input class="form-check-input" type="checkbox" value="" name="vente">
+					<label class="form-check-label" for="defaultCheck1"> Mes ventes</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" name="enchere">
+					<label class="form-check-label" for="defaultCheck1"> Mes enchères en cours</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" name="achat">
+					<label class="form-check-label" for="defaultCheck1"> Mes acquisitions</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" name="autre">
+					<label class="form-check-label" for="defaultCheck1"> Autres enchères</label>
+				</div>
 			</div>
-		</div>	
+		</div>
+			<div class="col sm" id="myDIV">
+				
+					<div class="row justify-content-around">
+						<div class="border rounded border-primary col-6">
+							<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
+							<div class="col">
+								<p>Article : <br>
+								Prix : <br>
+								Fin de l'enchère : <br>
+								Retrait : <br>
+								Vendeur : </p>
+							</div>
+						</div>
+						<p></p>
+						<div class="border rounded border-primary col-6">
+							<img name="img3.png" src="img3.png" class="img-fluid" alt="imageArticle">
+							<div class="col">
+								<p>Article : <br>
+								Prix : <br>
+								Fin de l'enchère : <br>
+								Retrait : <br>
+								Vendeur : </p>
+							</div>
+						</div>
+					<!-- </span> -->
+					</div>
+							
+				
+				<div class="row justify-content-around">
+				<div class="border border-primary col-6">
+					
+						<img name="img2.png" src="img2.png" class="img-fluid" alt="imageArticle">
+						<div class="col">
+							<p>Article : <br>
+							Prix : <br>
+							Fin de l'enchère : <br>
+							Retrait : <br>
+							Vendeur : </p>
+						</div>
+				</div>
+				<p></p>
+					<!-- <span class="border border-primary"> Mon border ne marche pas ! à re tester!!!!!!!!	 --> 
+					<div class="border border-primary col-6">
+						<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
+						<div class="col">
+							<p>Article : <br>
+							Prix : <br>
+							Fin de l'enchère : <br>
+							Retrait : <br>
+							Vendeur : </p>
+						</div>
+					</div>
+				<!-- </span> -->
+				</div>
+			</div>
+			
+			<!-- javascript permetant la recherche -->
+			<script>
+			$(document).ready(function(){
+			  $("#myInput").on("keyup", function() {
+			    var value = $(this).val().toLowerCase();
+			    $("#myDIV *").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+			  });
+			});
+			</script>
 	</div>
+		
 	<!-- Fin div container -->
 </body>
 </html>

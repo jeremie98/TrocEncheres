@@ -28,6 +28,7 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 	private static final String SELECTALL = "select no_utilisateur, pseudo, nom, prenom, email, telephone, "
 			+ "rue, code_postal, ville, mot_de_passe, credit, administrateur from UTILISATEURS "
 			+ "where no_utilisateur = ?";
+	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -235,12 +236,27 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
 						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
 			}
-			
 		} catch(SQLException e) {
 			throw new DALException("SelectAll failed ------", e);
 		}
-		
+
 		return utilisateur;
 	}
 
+	@Override
+	public void Delete(int idUtilisateur) throws DALException {
+		// TODO Auto-generated method stub
+		// Récupérer la connexion
+		try {
+			conn = ConnectionProvider.getConnection();
+			// Préparer la requete
+			stmt = conn.prepareStatement(DELETE);
+			stmt.setInt(1, idUtilisateur);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

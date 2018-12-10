@@ -31,7 +31,7 @@
 		
 			<div class="row justify-content-center">
 				<div class="form-group col-sm-5">
-					<input type="text" class="form-control" name="pseudo" placeholder="Pseudo" />
+					<input type="text" class="form-control" name="pseudo" placeholder="peudo" />
 				</div>
 				<div class="form-group col-sm-5">
 					<input type="text" class="form-control" name="nom" placeholder="Nom" />

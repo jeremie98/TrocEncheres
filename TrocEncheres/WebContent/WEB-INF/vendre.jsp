@@ -24,8 +24,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="nav navbar-nav">
-      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/profil"><span class="glyphicon glyphicon-user"></span> Mon profil</a>
-      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/#"><span class="glyphicon glyphicon-log-iout"></span> Déconnexion</a>
+      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/profil"> Mon profil</a>
+      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/#"> Déconnexion</a>
     </div>
   </div>
 </nav>
