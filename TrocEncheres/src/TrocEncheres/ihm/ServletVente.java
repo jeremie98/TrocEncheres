@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import TrocEncheres.bll.BLLException;
+import TrocEncheres.bll.CategorieMger;
+
 /**
  * Servlet implementation class ServletVente
  */
@@ -26,8 +29,16 @@ public class ServletVente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// affichage des catégories dans la liste déroulante
+		CategorieMger categorieMger = new CategorieMger();
+		try {
+			request.setAttribute("listeCategorie", categorieMger.selectAll());
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		
 		// redirection vers la page de nouvelle vente
-		request.getRequestDispatcher("WEB-INF/vendre.jsp").forward(request, response);;
+		request.getRequestDispatcher("WEB-INF/vendre.jsp").forward(request, response);
 	}
 
 	/**

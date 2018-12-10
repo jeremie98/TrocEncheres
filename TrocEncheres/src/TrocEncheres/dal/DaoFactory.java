@@ -48,4 +48,25 @@ public class DaoFactory {
 		}
 		return daoVente; 
 	}
+	
+	/**
+	 * Méthode qui renvoie une instance de Vente
+	 * @return une nouvelle vente
+	 */
+	public static DaoCategorie getCategorieDAO()  {
+		DaoCategorie daoCategorie =null;
+		try {
+			daoCategorie=(DaoCategorie ) Class.forName("TrocEncheres.dal.sqlserver.DaoCategorieImpl").newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return daoCategorie; 
+	}
 }
