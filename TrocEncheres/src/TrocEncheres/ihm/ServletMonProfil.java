@@ -66,6 +66,7 @@ public class ServletMonProfil extends HttpServlet {
 			UtilisateurMger userMger = new UtilisateurMger();
 			Utilisateur utilisateur;
 			// récupération des informations du formulaire
+			int no_utilisateur = (Integer)request.getSession().getAttribute("idutilisateur");
 			String pseudo = request.getParameter("pseudo").trim();
 			String nom = request.getParameter("nom").trim();
 			String prenom = request.getParameter("prenom").trim();
@@ -76,7 +77,7 @@ public class ServletMonProfil extends HttpServlet {
 			String ville = request.getParameter("ville").trim();
 			String pass = request.getParameter("pass").trim();
 			String confPass = request.getParameter("confPass").trim();
-			utilisateur = new Utilisateur(pseudo, nom, prenom, email, tel, rue, cp, ville, pass);
+			utilisateur = new Utilisateur(no_utilisateur, pseudo, nom, prenom, email, tel, rue, cp, ville, pass, false);
 			// update 
 			if(pass.equals(confPass)) {
 				userMger.update(utilisateur);

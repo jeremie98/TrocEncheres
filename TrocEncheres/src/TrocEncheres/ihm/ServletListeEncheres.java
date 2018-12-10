@@ -26,6 +26,9 @@ public class ServletListeEncheres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// affichage des informations utiles à l'accueil (Liste enchères)
+		
+		
 		// redirection vers la page d'accueil
 		request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
 	}

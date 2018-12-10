@@ -35,7 +35,10 @@ public class ServletInscription extends HttpServlet{
 			UtilisateurMger userManag = new UtilisateurMger(); 
 			Utilisateur utilisateur;
 			String pseudo = req.getParameter("pseudo").trim();
-			int tel = Integer.parseInt(req.getParameter("tel").trim());
+			int tel = 0;
+			if(req.getParameter("tel").trim() != "") {
+				tel = Integer.parseInt(req.getParameter("tel").trim());
+			}
 			String cp = req.getParameter("cp").trim();
 			String pass = req.getParameter("pass").trim();
 			String mail = req.getParameter("email").trim();
@@ -49,13 +52,22 @@ public class ServletInscription extends HttpServlet{
 			// si les mots de passe correspondent on réalise l'insert
 			if(pass.equals(confirm)) {
 				userManag.insert(utilisateur);
-			}	
+				if(userManag.getErreurs().isEmpty()) {
+					// redirection vers la page de connexion
+					req.getRequestDispatcher("WEB-INF/connexion.jsp").forward(req, resp);
+				} else {
+					req.setAttribute("erreurs", userManag.getErreurs());
+					req.getRequestDispatcher("WEB-INF/creer_compte.jsp").forward(req, resp);
+				}
+			}else {
+				req.setAttribute("mdpincorrect", "Les mots de passes sont différents");
+				req.getRequestDispatcher("WEB-INF/creer_compte.jsp").forward(req, resp);
+			}
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
 		
-		// redirection vers la page de connexion
-		req.getRequestDispatcher("WEB-INF/connexion.jsp").forward(req, resp);
+		
 	}
 	
 	

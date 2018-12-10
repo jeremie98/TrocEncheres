@@ -1,5 +1,8 @@
 package TrocEncheres.bll;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import TrocEncheres.bo.Utilisateur;
 import TrocEncheres.dal.DALException;
 import TrocEncheres.dal.DaoFactory;
@@ -13,6 +16,7 @@ import TrocEncheres.dal.DaoUtilisateur;
 public class UtilisateurMger {
 	// Attributs
 	DaoUtilisateur daoUtilisateur = DaoFactory.getUtilisateurDAO();
+	private List<String> erreurs = new ArrayList<String>();
 	
 	// Constructeur
 	
@@ -66,49 +70,47 @@ public class UtilisateurMger {
 	public void insert(Utilisateur utilisateur) throws BLLException{
 		// vérifications
 		boolean valide = true;
-		StringBuffer sb = new StringBuffer();
 		
 		if(utilisateur == null) {
 			valide = false;
 			throw new BLLException("Utilisateur null");
 		}if(utilisateur.getPseudo().trim().length()==0) {
-			sb.append("Le pseudo est obligatoire.\n");
+			erreurs.add("Le pseudo est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getNom().trim().length()==0) {
-			sb.append("Le nom est obligatoire.\n");
+			erreurs.add("Le nom est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getPrenom().trim().length()==0) {
-			sb.append("Le prénom est obligatoire.\n");
+			erreurs.add("Le prénom est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getEmail().trim().length()==0) {
-			sb.append("L'email est obligatoire.\n");
+			erreurs.add("L'email est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getRue().trim().length()==0){
-			sb.append("La rue est obligatoire.\n");
+			erreurs.add("La rue est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getCodePostal().trim().length()==0){
-			sb.append("Le code postal est obligatoire.\n");
+			erreurs.add("Le code postal est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getVille().trim().length()==0){
-			sb.append("La ville est obligatoire.\n");
+			erreurs.add("La ville est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getMotDePasse().trim().length()==0){
-			sb.append("Le mot de passe est obligatoire.\n");
+			erreurs.add("Le mot de passe est obligatoire.\n");
 			valide = false;
 		}
 		try {
 			if(daoUtilisateur.selectNoUtilisateur(utilisateur.getPseudo()) != 0) {
-				throw new BLLException("Le pseudo que vous avez choisi existe déjà, veuillez en choisir un nouveau.");
+				valide = false;
+				erreurs.add("Le pseudo que vous avez choisi existe déjà, veuillez en choisir un nouveau.");
 			}
-			} catch (DALException e1) {
-				e1.printStackTrace();
-			}
+		} catch (DALException e1) {
+			e1.printStackTrace();
+		}
 		
 		try {
-			if(!valide) {
-				throw new BLLException(sb.toString());
-			}else {
-				daoUtilisateur.Insert(utilisateur);
+			if(valide) {
+				daoUtilisateur.Insert(utilisateur);	
 			}
 		} catch(DALException e){
 			throw new BLLException("Insert failed ----", e);
@@ -123,43 +125,39 @@ public class UtilisateurMger {
 	public void update(Utilisateur utilisateur) throws BLLException{
 		// vérifications
 		boolean valide = true;
-		StringBuffer sb = new StringBuffer();
 		
 		if(utilisateur == null) {
 			valide = false;
 			throw new BLLException("Utilisateur null");
 		}if(utilisateur.getPseudo().trim().length()==0) {
-			sb.append("Le pseudo est obligatoire.\n");
+			erreurs.add("Le pseudo est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getNom().trim().length()==0) {
-			sb.append("Le nom est obligatoire.\n");
+			erreurs.add("Le nom est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getPrenom().trim().length()==0) {
-			sb.append("Le prénom est obligatoire.\n");
+			erreurs.add("Le prénom est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getEmail().trim().length()==0) {
-			sb.append("L'email est obligatoire.\n");
+			erreurs.add("L'email est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getRue().trim().length()==0){
-			sb.append("La rue est obligatoire.\n");
+			erreurs.add("La rue est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getCodePostal().trim().length()==0){
-			sb.append("Le code postal est obligatoire.\n");
+			erreurs.add("Le code postal est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getVille().trim().length()==0){
-			sb.append("La ville est obligatoire.\n");
+			erreurs.add("La ville est obligatoire.\n");
 			valide = false;
 		}if(utilisateur.getMotDePasse().trim().length()==0){
-			sb.append("Le mot de passe est obligatoire.\n");
+			erreurs.add("Le mot de passe est obligatoire.\n");
 			valide = false;
 		}
-		
 		try {
-			if(!valide) {
-				throw new BLLException(sb.toString());
-			}else {
+			if(valide) {
 				daoUtilisateur.Update(utilisateur);
-			}	
+			}
 		} catch(DALException e) {
 			throw new BLLException("Update failed ----", e);
 		}
@@ -184,6 +182,14 @@ public class UtilisateurMger {
 			throw new BLLException("Check User failed ----", e );
 		}
 		return trouver;
+	}
+	
+	/**
+	 * Renvoie une liste d'erreurs 
+	 * @return une liste d'erreurs relatives aux requêtes d'insertion, de mise à jours
+	 */
+	public List<String> getErreurs(){
+		return erreurs;
 	}
 
 }
