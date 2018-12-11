@@ -34,7 +34,7 @@ public class VenteMger {
 	 * @param vente
 	 * @throws BLLException
 	 */
-	public void insert(Vente vente, int no_utilisateur) throws BLLException{
+	public void insert(Vente vente, int no_utilisateur, int idCateg) throws BLLException{
 		// vérifications
 		boolean valide = true;
 		if(vente == null) {
@@ -43,7 +43,7 @@ public class VenteMger {
 		}if(vente.getNomArticle().trim().length()==0) {
 			erreurs.add("Le nom de l'article est obligatoire.\n");
 			valide = false;
-		}if(vente.getCategorie() == null) {
+		}if(vente.getIdCateg() <0 || vente.getIdCateg() == 0) {
 			erreurs.add("La catégorie est obligatoire.\n");
 			valide = false;
 		}if(vente.getDescription().trim().length()==0) {
@@ -58,8 +58,7 @@ public class VenteMger {
 		}
 		try {
 			if(valide) {
-				daoVente.Insert(vente, no_utilisateur);
-			}
+				daoVente.Insert(vente, no_utilisateur, idCateg);			}
 		} catch(DALException e) {
 			throw new BLLException("Insert failed ------", e);
 		}

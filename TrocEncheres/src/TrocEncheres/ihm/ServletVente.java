@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import TrocEncheres.bll.BLLException;
 import TrocEncheres.bll.CategorieMger;
+import TrocEncheres.bll.UtilisateurMger;
+import TrocEncheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletVente
@@ -33,6 +35,25 @@ public class ServletVente extends HttpServlet {
 		CategorieMger categorieMger = new CategorieMger();
 		try {
 			request.setAttribute("listeCategorie", categorieMger.selectAll());
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		
+		// affichage des informations de retrait
+		UtilisateurMger userM = new UtilisateurMger();
+		Utilisateur user = null;
+		try {
+			user = userM.selectAll((Integer)request.getSession().getAttribute("idutilisateur"));
+		} catch (BLLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			
+			request.setAttribute("listeCategorie", categorieMger.selectAll());
+			request.setAttribute("rue", user.getRue() );
+			request.setAttribute("cp", user.getCodePostal());
+			request.setAttribute("ville", user.getVille() );
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}

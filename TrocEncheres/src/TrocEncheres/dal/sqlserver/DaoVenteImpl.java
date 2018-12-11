@@ -1,6 +1,7 @@
 package TrocEncheres.dal.sqlserver;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class DaoVenteImpl implements DaoVente{
 	ResultSet rs = null;
 	
 	@Override
-	public void Insert(Vente vente, int no_utilisateur) {
+	public void Insert(Vente vente, int no_utilisateur, int idCateg) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -44,19 +45,19 @@ public class DaoVenteImpl implements DaoVente{
 			// Récupérer une connexion
 			conn = ConnectionProvider.getConnection();
 		
-			ResultSet rs2 = null;
+			/*ResultSet rs2 = null;
 			PreparedStatement stmt2 = conn.prepareStatement(SELECTCATEG);
 			rs2 = stmt2.executeQuery();
-			int idCateg = rs2.getInt(1);
+			int idCateg = rs2.getInt(1);*/
 			
 			
 			// Préparer la requete
 			stmt = conn.prepareStatement(INSERT);
 			stmt.setString(1, vente.getNomArticle());
 			stmt.setString(2, vente.getDescription());
-			stmt.setInt(3, vente.getPrixVente());
-			stmt.setDate(4, vente.getDateFinEncheres());
-			stmt.setInt(5, vente.getMiseAPrix());
+			stmt.setDate(3, new Date(vente.getDateFinEncheres().getTime()));
+			stmt.setInt(4, vente.getMiseAPrix());
+			stmt.setInt(5, vente.getPrixVente());
 			stmt.setInt(6, no_utilisateur);
 			stmt.setInt(7, idCateg);
 

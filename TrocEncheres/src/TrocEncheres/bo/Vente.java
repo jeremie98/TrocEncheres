@@ -1,5 +1,6 @@
 package TrocEncheres.bo;
 
+import java.sql.Blob;
 import java.sql.Date;
 
 /**
@@ -16,8 +17,9 @@ public class Vente {
 	private Date dateFinEncheres;
 	private int miseAPrix;
 	private int prixVente;
-	private Utilisateur utilisateur;
-	private Categorie categorie;
+	private int id_user;
+	private int id_categ;
+	private Blob photo;
 	
 	// Constructeurs
 	
@@ -41,7 +43,7 @@ public class Vente {
 	 * @param categorie
 	 */
 	public Vente(int noVente, String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
-			Utilisateur utilisateur, Categorie categorie) {
+			int id_user, int id_categ) {
 		super();
 		this.noVente = noVente;
 		this.nomArticle = nomArticle;
@@ -49,8 +51,8 @@ public class Vente {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.utilisateur = utilisateur;
-		this.categorie = categorie;
+		this.id_user = id_user;
+		this.id_categ = id_categ;
 	}
 
 	// Accessseurs
@@ -155,31 +157,31 @@ public class Vente {
 	 * Getteur de utilisateur
 	 * @return l'utilisateur associé à la vente
 	 */
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+	public int getIdUser() {
+		return id_user;
 	}
 
 	/**
 	 * Setteur de utilisateur, modifie la valeur de utilisateur
 	 * @param utilisateur
 	 */
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setUtilisateur(int id) {
+		this.id_user = id_user;
 	}
 
 	/**
 	 * Getteur de categorie
 	 * @return la catégorie de l'article en vente
 	 */
-	public Categorie getCategorie() {
-		return categorie;
+	public int getIdCateg() {
+		return id_categ;
 	}
 
 	/**
 	 * Setteur de categorie, modifie la valeur de categorie
 	 * @param categorie
 	 */
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
+	public void setCategorie(int id) {
+		this.id_categ = id_categ;
 	}
 }

@@ -154,6 +154,7 @@ public class UtilisateurMger {
 			erreurs.add("Le mot de passe est obligatoire.\n");
 			valide = false;
 		}
+		
 		try {
 			if(valide) {
 				daoUtilisateur.Update(utilisateur);

@@ -33,7 +33,7 @@
 			<div class="row justify-content-center">
 				<div class="form-group col-sm-5">
 					<input type="text" class="form-control" name="pseudo" placeholder="Pseudo" value="${requestScope.pseudo }"/>
-				</div>
+				</div> 
 				<div class="form-group col-sm-5">
 					<input type="text" class="form-control" name="nom" placeholder="Nom" value="${requestScope.nom }"/>
 				</div>
@@ -90,8 +90,20 @@
 					<a href="<%= request.getContextPath() %>/listeencheres" class="navbar-brand"><button type="button" class="btn btn-outline-secondary">Retour</button></a>
 				</div>
 			</div>
-			
 		</form>
+		<div>
+			<!-- Affichage des erreurs-->
+			<c:if test="${!requestScope.erreurs.isEmpty()}">
+				<c:forEach items="${requestScope.erreurs }" var="e">
+					<ul>
+						<li><c:out value="${e }"></c:out></li>
+					</ul>
+				</c:forEach>
+			</c:if>
+			<c:if test="${requestScope.mdpincorrect != null}">
+				<c:out value="${requestScope.mdpincorrect}"></c:out>
+			</c:if>		
+		</div>
 	</div>
 	<!-- Fin div container -->
 </body>
