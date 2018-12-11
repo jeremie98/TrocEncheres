@@ -185,5 +185,13 @@ public class UtilisateurMger {
 		}
 		return trouver;
 	}
+	
+	public void delete(int id_utilisateur) throws DALException {
+		try {
+			daoUtilisateur.Delete(id_utilisateur);
+		} catch(DALException e) {
+			throw new DALException("Echec suppression utilisateur", e);
+		}
+	}
 
 }

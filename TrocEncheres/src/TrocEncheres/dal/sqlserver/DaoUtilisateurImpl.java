@@ -246,14 +246,14 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 	@Override
 	public void Delete(int idUtilisateur) throws DALException {
 		// TODO Auto-generated method stub
-		// Récupérer la connexion
 		try {
+			// Récupérer la connexion
 			conn = ConnectionProvider.getConnection();
 			// Préparer la requete
 			stmt = conn.prepareStatement(DELETE);
 			stmt.setInt(1, idUtilisateur);
+			// exécution
 			stmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

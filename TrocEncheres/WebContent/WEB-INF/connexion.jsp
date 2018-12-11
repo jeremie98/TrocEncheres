@@ -14,9 +14,7 @@
 
 <body>
 
-	<nav class="navbar navbar-dark bg-dark">
-		<a href="connexion.jsp" class="navbar-brand">TrocEncheres.org</a>
-	</nav>
+	<%@ include file="../pages/navbar.jsp" %>
 	
 	<div class="container">
 	

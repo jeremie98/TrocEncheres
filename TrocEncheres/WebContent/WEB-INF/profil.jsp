@@ -16,13 +16,11 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-		<a href="<%= request.getContextPath()%>/listeencheres" class="navbar-brand">TrocEncheres.org</a>
-	</nav>
+	<%@ include file="../pages/navbar.jsp" %>
 
 	<!--  Debut div container -->
 	<div class="container">
-
+	
 		<h2 class="text-center">Profil</h2>
 
 			<div class="row justify-content-center">

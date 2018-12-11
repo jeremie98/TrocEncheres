@@ -16,19 +16,9 @@
 
 </head>
 <body>
+	<!-- Inclusion de la barre de navigation presnete dans fichier navbar.html -->
+	<%@ include file="../pages/navbar.jsp" %>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="connexion.jsp">TrocEnchères.0rg</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="nav navbar-nav">
-      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/profil"> Mon profil</a>
-      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/#"> Déconnexion</a>
-    </div>
-  </div>
-</nav>
 	<div class="container">
 		<h2 class="text-center">Nouvelle vente</h2>
 		<div class="row">
