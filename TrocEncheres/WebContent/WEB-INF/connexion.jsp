@@ -5,6 +5,7 @@
 <head>
 <title>Acceuil</title>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- lien vers feuille bootstrap -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -29,7 +30,7 @@
 					<input type="text" class="form-control"	name="user" placeholder="identifiant" />
 					<input type="password" class="form-control"	name="pass" placeholder="Mot de passe" /><br>
 				<div class="row">
-					<div class="col">
+					<div class="col-sm">
 						<button type="submit" class="btn btn-primary btn-lg">Connexion</button> 
 					</div>
 					<div class="col">
