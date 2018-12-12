@@ -3,6 +3,7 @@ package TrocEncheres.bll;
 import java.util.ArrayList;
 import java.util.List;
 
+import TrocEncheres.bo.Retrait;
 import TrocEncheres.bo.Vente;
 import TrocEncheres.dal.DALException;
 import TrocEncheres.dal.DaoFactory;
@@ -34,7 +35,7 @@ public class VenteMger {
 	 * @param vente
 	 * @throws BLLException
 	 */
-	public void insert(Vente vente, int no_utilisateur, int idCateg) throws BLLException{
+	public void insert(Vente vente, int no_utilisateur, int idCateg, Retrait retrait) throws BLLException{
 		// vérifications
 		boolean valide = true;
 		if(vente == null) {
@@ -58,7 +59,8 @@ public class VenteMger {
 		}
 		try {
 			if(valide) {
-				daoVente.Insert(vente, no_utilisateur, idCateg);			}
+				daoVente.Insert(vente, no_utilisateur, idCateg, retrait );
+			}
 		} catch(DALException e) {
 			throw new BLLException("Insert failed ------", e);
 		}
@@ -81,6 +83,22 @@ public class VenteMger {
 	 * Renvoie une liste d'erreurs 
 	 * @return une liste d'erreurs relatives à l'insertion d'une vente
 	 */
+	
+	public List<Vente> listVente()  throws BLLException {
+		 
+		List<Vente> listVentes = new ArrayList<>();
+		try {
+			
+			listVentes = daoVente.listVente();
+		}catch (DALException e) {
+			
+			throw new BLLException("Select failed ------", e);
+		}
+		
+		return listVentes;
+		
+		
+	}
 	public List<String> getErreurs(){
 		return erreurs;
 	}

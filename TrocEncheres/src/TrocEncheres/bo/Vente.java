@@ -1,7 +1,7 @@
 package TrocEncheres.bo;
 
 import java.sql.Blob;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Classe représentant une vente, mise à dispostion d'un article
@@ -42,17 +42,32 @@ public class Vente {
 	 * @param utilisateur
 	 * @param categorie
 	 */
-	public Vente(int noVente, String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
+	public Vente(String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
 			int id_user, int id_categ) {
 		super();
 		this.noVente = noVente;
 		this.nomArticle = nomArticle;
 		this.description = description;
-		this.dateFinEncheres = dateFinEncheres;
+		this.dateFinEncheres = new Date (dateFinEncheres.getTime());
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.id_user = id_user;
 		this.id_categ = id_categ;
+		
+	}
+	
+	public Vente(int no_vente, String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
+			int id_user, int id_categ) {
+		super();
+		this.noVente = no_vente;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = new Date (dateFinEncheres.getTime());
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.id_user = id_user;
+		this.id_categ = id_categ;
+		
 	}
 
 	// Accessseurs
@@ -117,6 +132,7 @@ public class Vente {
 	 * Setteur de dateFinEncheres, modifie la valeur de dateFinEncheres
 	 * @param dateFinEncheres
 	 */
+	
 	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
@@ -129,6 +145,8 @@ public class Vente {
 		return miseAPrix;
 	}
 
+	
+	
 	/**
 	 * Setteur de miseAPrix, modifie la valeur de miseAPrix
 	 * @param miseAPrix
@@ -184,4 +202,6 @@ public class Vente {
 	public void setCategorie(int id) {
 		this.id_categ = id_categ;
 	}
+	
+	
 }

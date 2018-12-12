@@ -58,61 +58,30 @@
 				</div>
 			</div>
 		</div>
+			<c:forEach var="vente" items="${requestScope.listVentes}">
 			<div class="col sm" id="myDIV">
-				
+					
 					<div class="row justify-content-around">
 						<div class="border rounded border-primary col-6">
 							<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
 							<div class="col">
-								<p>Article : <br>
-								Prix : <br>
-								Fin de l'enchère : <br>
-								Retrait : <br>
-								Vendeur : </p>
-							</div>
-						</div>
-						<p></p>
-						<div class="border rounded border-primary col-6">
-							<img name="img3.png" src="img3.png" class="img-fluid" alt="imageArticle">
-							<div class="col">
-								<p>Article : <br>
-								Prix : <br>
-								Fin de l'enchère : <br>
-								Retrait : <br>
-								Vendeur : </p>
-							</div>
-						</div>
-					<!-- </span> -->
-					</div>
 							
-				
-				<div class="row justify-content-around">
-				<div class="border border-primary col-6">
-					
-						<img name="img2.png" src="img2.png" class="img-fluid" alt="imageArticle">
-						<div class="col">
-							<p>Article : <br>
-							Prix : <br>
-							Fin de l'enchère : <br>
-							Retrait : <br>
-							Vendeur : </p>
+								<p>Article : ${vente.getNomArticle() }<br>
+								Prix : ${vente.getDescription() }<br>
+								Fin de l'enchère : ${vente.getDateFinEncheres()}<br>
+								Retrait : <br>
+								Vendeur : </p>
+
+							
+							
+							</div>
 						</div>
-				</div>
-				<p></p>
-					<!-- <span class="border border-primary"> Mon border ne marche pas ! à re tester!!!!!!!!	 --> 
-					<div class="border border-primary col-6">
-						<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
-						<div class="col">
-							<p>Article : <br>
-							Prix : <br>
-							Fin de l'enchère : <br>
-							Retrait : <br>
-							Vendeur : </p>
-						</div>
-					</div>
+						
 				<!-- </span> -->
 				</div>
+				
 			</div>
+			</c:forEach>
 			
 			<!-- javascript permetant la recherche -->
 			<script>

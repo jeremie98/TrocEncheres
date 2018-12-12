@@ -53,7 +53,7 @@ public class ServletConnexion extends HttpServlet {
 				// mise en session de l'utilisateur 
 				request.getSession().setAttribute("idutilisateur", userManag.selectNoUtilisateur(pseudo));
 				// redirection vers la page d'accueil
-				request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);	
+				request.getRequestDispatcher("/listeencheres").forward(request, response);	
 			}
 		} catch (BLLException e) {
 			e.printStackTrace();

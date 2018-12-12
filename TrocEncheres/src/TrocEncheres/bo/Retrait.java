@@ -8,9 +8,9 @@ package TrocEncheres.bo;
 public class Retrait {
 
 	// Attributs
-	private Vente vente;
+	private int idVente;
 	private String rue;
-	private char code_postal;
+	private String code_postal;
 	private String ville;
 	
 	// Constructeurs
@@ -29,9 +29,9 @@ public class Retrait {
 	 * @param code_postal
 	 * @param ville
 	 */
-	public Retrait(Vente vente, String rue, char code_postal, String ville) {
+	public Retrait(int idVente, String rue, String code_postal, String ville) {
 		super();
-		this.vente = vente;
+		this.idVente = idVente;
 		this.rue = rue;
 		this.code_postal = code_postal;
 		this.ville = ville;
@@ -43,16 +43,16 @@ public class Retrait {
 	 * Getteur de vente
 	 * @return la vente associée au retrait
 	 */
-	public Vente getVente() {
-		return vente;
+	public int getVente() {
+		return idVente;
 	}
 
 	/**
 	 * Setteur de vente, modifie la valeur de vente
 	 * @param vente
 	 */
-	public void setVente(Vente vente) {
-		this.vente = vente;
+	public void setVente(int vente) {
+		this.idVente = vente;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class Retrait {
 	 * Getteur de code_postal
 	 * @return renvoie le code postal du lieu du retrait
 	 */
-	public char getCode_postal() {
+	public String getCode_postal() {
 		return code_postal;
 	}
 
@@ -83,7 +83,7 @@ public class Retrait {
 	 * Setteur de code_postal, modifie la valeur de code_postal
 	 * @param code_postal
 	 */
-	public void setCode_postal(char code_postal) {
+	public void setCode_postal(String code_postal) {
 		this.code_postal = code_postal;
 	}
 
