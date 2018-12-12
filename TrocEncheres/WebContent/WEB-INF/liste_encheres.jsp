@@ -6,6 +6,7 @@
 <head>
 <title>Liste encheres</title>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- lien vers feuille bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -25,33 +26,38 @@
 	<!-- /!\/!\ 
 	Barre de recherche ne fonctionne pas correctement ! a remplacer !!! 
 	/!\/!\ -->
-				<input class="form-control" id="myInput" type="text" placeholder="Search..">
-		<div class="row justify-content-center">
-			<!-- Checkboxes de filtre -->
-			<div class="col sm">
-				<div class="form-check justify-content-center">
-					<input class="form-check-input" type="checkbox" value="" name="vente">
-					<label class="form-check-label" for="defaultCheck1"> Mes ventes</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" name="enchere">
-					<label class="form-check-label" for="defaultCheck1"> Mes enchères en cours</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" name="achat">
-					<label class="form-check-label" for="defaultCheck1"> Mes acquisitions</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" name="autre">
-					<label class="form-check-label" for="defaultCheck1"> Autres enchères</label>
+		<input class="form-control" id="myInput" type="text" placeholder="Search..">
+		<form class="form-group" >
+			<div class="row justify-content-center">
+				<!-- Checkboxes de filtre -->
+				<div class="row-sm">
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="" id="customCheck1" name="mes enchere">
+						<label class="custom-control-label" for="customCheck1"> Mes ventes</label>
+					</div>			
+								
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="" id="customCheck2" name="enchere">
+						<label class="custom-control-label" for="customCheck2"> Mes enchères en cours</label>
+					</div>
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="" id="customCheck3" name="achat">
+						<label class="custom-control-label" for="customCheck3"> Mes acquisitions</label>
+					</div>
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="" id="customCheck4" name="autre">
+						<label class="custom-control-label" for="customCheck4"> Autres enchères</label>
+					</div>
+					<button type="submit" class="btn btn-success">Filtrer</button>
 				</div>
 			</div>
-		</div>
+			
+		</form>
 			<c:forEach var="vente" items="${requestScope.listVentes}">
-			<div class="col sm" id="myDIV">
+			<div class="col" id="myDIV">
 					
-					<div class="row justify-content-around">
-						<div class="border rounded border-primary col-6">
+					<div class="row justify-content-center">
+						<div class="border rounded border-primary col-sm-6">
 							<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
 							<div class="col">
 							
@@ -61,9 +67,6 @@
 								Fin de l'enchère : ${vente.getDateFinEncheres()}<br>
 								Retrait : <br>
 								Vendeur : </p>
-
-							
-							
 							</div>
 						</div>
 						

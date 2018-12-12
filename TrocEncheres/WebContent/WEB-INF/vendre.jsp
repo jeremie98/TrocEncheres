@@ -49,7 +49,7 @@
 						<p>Catégorie</p>
 					</div>
 					<div class="form-group col-sm-4">
-						<select name="categorie" size="1">
+						<select class="form-control" name="categorie" size="1">
 							<c:forEach items="${requestScope.listeCategorie}" var ="c">
 								<option value="${c.getNoCategorie()}"><c:out value="${c.getLibelle()}" /></option>
 							</c:forEach>							
