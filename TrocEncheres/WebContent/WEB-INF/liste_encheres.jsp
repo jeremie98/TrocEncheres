@@ -55,8 +55,9 @@
 							<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
 							<div class="col">
 							
-								<p>Article : ${vente.getNomArticle() }<br>
-								Prix : ${vente.getDescription() }<br>
+								<p>Article : <a href="<%= request.getContextPath() %>/enchere" class="badge badge-primary">${vente.getNomArticle() }</a><br>
+								Description : ${vente.getDescription() }<br>
+								Prix : ${vente.getPrixVente() }<br>
 								Fin de l'enchère : ${vente.getDateFinEncheres()}<br>
 								Retrait : <br>
 								Vendeur : </p>
