@@ -38,7 +38,6 @@ public class ServletListeEncheres extends HttpServlet {
 				List<Vente> listVentes =  new ArrayList<Vente>();
 				try {
 					listVentes = venteManag.listVente();
-					System.out.println(venteManag.listVente());
 					request.setAttribute("listVentes", listVentes);
 					
 					request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);

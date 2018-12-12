@@ -16,9 +16,9 @@
 
 <body>
 
-	<nav class="navbar navbar-dark bg-dark">
-		<a href="connexion.jsp" class="navbar-brand">TrocEncheres.org</a>
-	</nav>
+	<!-- Inclusion de la barre de navigation presnete dans fichier navbar.html -->
+	<%@ include file="../pages/navbar.jsp" %>
+
 
 
 

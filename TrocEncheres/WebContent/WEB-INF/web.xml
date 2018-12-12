@@ -60,4 +60,12 @@
     <servlet-name>ServletVente</servlet-name>
     <url-pattern>/nouvellevente</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>ServletSupprUtilisateur</servlet-name>
+  	<servlet-class>TrocEncheres.ihm.ServletDeleteUsers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletSupprUtilisateur</servlet-name>
+  	<url-pattern>/supprUtilisateur</url-pattern>
+  </servlet-mapping>
 </web-app>
