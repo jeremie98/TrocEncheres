@@ -16,9 +16,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-		<a href="<%= request.getContextPath()%>/listeencheres" class="navbar-brand">TrocEncheres.org</a>
-	</nav>
+	<%@ include file="../pages/navbar.jsp" %>
 
 	<!--  Debut div container -->
 	<div class="container">

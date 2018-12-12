@@ -18,9 +18,8 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-dark bg-dark">
-		<a href="<%= request.getContextPath() %>/listeencheres" class="navbar-brand">TrocEncheres.org</a>
-	</nav>
+		<%@ include file="../pages/navbar.jsp" %>
+
 	<!--  Debut div container -->
 	<div class="container">
 
@@ -86,7 +85,7 @@
 			<div class="row justify-content-center">
 				<div class="form-group col-sm-5">
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
-					<button type="button" class="btn btn-danger">Supprimer compte</button>
+					<a href="<%= request.getContextPath() %>/supprUtilisateur"><button type="button" class="btn btn-danger">Supprimer compte</button></a>
 					<a href="<%= request.getContextPath() %>/listeencheres" class="navbar-brand"><button type="button" class="btn btn-outline-secondary">Retour</button></a>
 				</div>
 			</div>
