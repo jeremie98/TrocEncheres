@@ -25,28 +25,34 @@
 	<!-- /!\/!\ 
 	Barre de recherche ne fonctionne pas correctement ! a remplacer !!! 
 	/!\/!\ -->
-				<input class="form-control" id="myInput" type="text" placeholder="Search..">
-		<div class="row justify-content-center">
-			<!-- Checkboxes de filtre -->
-			<div class="col sm">
-				<div class="form-check justify-content-center">
-					<input class="form-check-input" type="checkbox" value="" name="vente">
-					<label class="form-check-label" for="defaultCheck1"> Mes ventes</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" name="enchere">
-					<label class="form-check-label" for="defaultCheck1"> Mes enchères en cours</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" name="achat">
-					<label class="form-check-label" for="defaultCheck1"> Mes acquisitions</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" name="autre">
-					<label class="form-check-label" for="defaultCheck1"> Autres enchères</label>
+		<input class="form-control" id="myInput" type="text" placeholder="Search..">
+		<form method="POST" action="<%= request.getContextPath() %>/listeencheres" class="form-group" >
+			<div class="row justify-content-center">
+				<!-- Checkboxes de filtre -->
+				<div class="row-sm">
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="mesVentes" id="customCheck1" name="mesenchere">
+						<label class="custom-control-label" for="customCheck1"> Mes ventes</label>
+					</div>			
+								
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="" id="customCheck2" name="enchere">
+						<label class="custom-control-label" for="customCheck2"> Mes enchères en cours</label>
+					</div>
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="" id="customCheck3" name="achat">
+						<label class="custom-control-label" for="defaultCheck3"> Mes acquisitions</label>
+					</div>
+					<div class="custom-control custom-checkbox">
+						<input class="custom-control-input" type="checkbox" value="" id="customCheck4" name="autre">
+						<label class="custom-control-label" for="customCheck4"> Autres enchères</label>
+					</div>
+					<button type="submit" class="btn btn-success">Filtrer</button>
 				</div>
 			</div>
-		</div>
+			
+		</form>
+		
 			<c:forEach var="vente" items="${requestScope.listVentes}">
 			<div class="col sm" id="myDIV">
 					
@@ -55,8 +61,9 @@
 							<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
 							<div class="col">
 							
-								<p>Article : ${vente.getNomArticle() }<br>
-								Prix : ${vente.getDescription() }<br>
+								<p>Article : <a href="<%= request.getContextPath() %>/enchere" class="badge badge-primary">${vente.getNomArticle() }</a><br>
+								Description : ${vente.getDescription() }<br>
+								Prix : ${vente.getMiseAPrix() }<br>
 								Fin de l'enchère : ${vente.getDateFinEncheres()}<br>
 								Retrait : <br>
 								Vendeur : </p>

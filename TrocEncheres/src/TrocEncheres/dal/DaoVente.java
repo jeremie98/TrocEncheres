@@ -20,4 +20,6 @@ public interface DaoVente {
 	
 	void Update(Vente vente) throws DALException;
 	
+	List<Vente> venteById(int id) throws DALException;
+	
 }

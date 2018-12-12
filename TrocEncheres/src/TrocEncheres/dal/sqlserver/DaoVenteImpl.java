@@ -35,7 +35,7 @@ public class DaoVenteImpl implements DaoVente{
 	private static final String SELECTAllVENTE = "select nomarticle, description, date_fin_encheres ,prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES";
 	private static final String INSERTRETRAIT =  "insert into RETRAITS (no_vente, rue, code_postal, ville) values (?,?,?,?)";
 	private static final String SELECTRETRAIT = "select no_vente, rue, code_postal, ville FROM RETRAITS where id=?;";
-
+	private static final String SELECTBYID = " select nomarticle, description, date_fin_encheres, prix initial, prix_vente, no_utilisateur, no_categorie FROM VENTES where no_utilisateur=?;";
 	
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -76,19 +76,11 @@ public class DaoVenteImpl implements DaoVente{
 					stmt2.setString(2,  retrait.getRue());
 					stmt2.setString(3, retrait.getCode_postal());
 					stmt2.setString(4, retrait.getVille());
-					
 					stmt2.executeUpdate();
 					
-				}
-				
-				
-				
-				
+				}		
 			}
-			
-			
-			
-			
+
 			stmt = conn.prepareStatement(INSERTRETRAIT);
 			
 
@@ -221,4 +213,34 @@ public class DaoVenteImpl implements DaoVente{
 		
 	}
 
+	
+	public List<Vente> venteById(int id) throws DALException{
+		
+		Vente vente = null;
+		List<Vente> listVenteId = new ArrayList<>();
+		try {
+			
+			conn = ConnectionProvider.getConnection();
+			
+			stmt = conn.prepareStatement(SELECTBYID);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				vente = new Vente(rs.getInt("no_vente"),rs.getString("nomarticle"),rs.getString("description"),rs.getDate("date_fin_encheres"),rs.getInt("prix_initial"),rs.getInt("prixvente"),
+						rs.getInt("no_utilisateur"),rs.getInt("no_categorie"));
+				
+				listVenteId.add(vente);
+				
+			}
+			
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return listVenteId;
+		
+	}
 }
