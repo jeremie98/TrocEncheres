@@ -8,7 +8,7 @@
 	    <div class="nav navbar-nav">
 	      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/nouvellevente"> Vendre un article</a>
 	      <a class="nav-item nav-link" href="<%= request.getContextPath()%>/profil"> Mon profil</a>
-	      <a class="nav-item nav-link" href="<%= request.getContextPath() %>/#" > Deconnexion</a>
+	      <a class="nav-item nav-link" href="<%= request.getContextPath() %>/deconnexion" > Deconnexion</a>
 	    </div>
 	  </div>
 	</nav>
