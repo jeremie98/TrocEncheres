@@ -1,6 +1,7 @@
 package TrocEncheres.bo;
 
-import java.sql.Date;
+import java.sql.Blob;
+import java.util.Date;
 
 /**
  * Classe représentant une vente, mise à dispostion d'un article
@@ -16,8 +17,9 @@ public class Vente {
 	private Date dateFinEncheres;
 	private int miseAPrix;
 	private int prixVente;
-	private Utilisateur utilisateur;
-	private Categorie categorie;
+	private int id_user;
+	private int id_categ;
+	private Blob photo;
 	
 	// Constructeurs
 	
@@ -40,17 +42,32 @@ public class Vente {
 	 * @param utilisateur
 	 * @param categorie
 	 */
-	public Vente(int noVente, String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
-			Utilisateur utilisateur, Categorie categorie) {
+	public Vente(String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
+			int id_user, int id_categ) {
 		super();
 		this.noVente = noVente;
 		this.nomArticle = nomArticle;
 		this.description = description;
-		this.dateFinEncheres = dateFinEncheres;
+		this.dateFinEncheres = new Date (dateFinEncheres.getTime());
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.utilisateur = utilisateur;
-		this.categorie = categorie;
+		this.id_user = id_user;
+		this.id_categ = id_categ;
+		
+	}
+	
+	public Vente(int no_vente, String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
+			int id_user, int id_categ) {
+		super();
+		this.noVente = no_vente;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = new Date (dateFinEncheres.getTime());
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.id_user = id_user;
+		this.id_categ = id_categ;
+		
 	}
 
 	// Accessseurs
@@ -115,6 +132,7 @@ public class Vente {
 	 * Setteur de dateFinEncheres, modifie la valeur de dateFinEncheres
 	 * @param dateFinEncheres
 	 */
+	
 	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
@@ -127,6 +145,8 @@ public class Vente {
 		return miseAPrix;
 	}
 
+	
+	
 	/**
 	 * Setteur de miseAPrix, modifie la valeur de miseAPrix
 	 * @param miseAPrix
@@ -155,31 +175,33 @@ public class Vente {
 	 * Getteur de utilisateur
 	 * @return l'utilisateur associé à la vente
 	 */
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+	public int getIdUser() {
+		return id_user;
 	}
 
 	/**
 	 * Setteur de utilisateur, modifie la valeur de utilisateur
 	 * @param utilisateur
 	 */
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setUtilisateur(int id) {
+		this.id_user = id_user;
 	}
 
 	/**
 	 * Getteur de categorie
 	 * @return la catégorie de l'article en vente
 	 */
-	public Categorie getCategorie() {
-		return categorie;
+	public int getIdCateg() {
+		return id_categ;
 	}
 
 	/**
 	 * Setteur de categorie, modifie la valeur de categorie
 	 * @param categorie
 	 */
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
+	public void setCategorie(int id) {
+		this.id_categ = id_categ;
 	}
+	
+	
 }

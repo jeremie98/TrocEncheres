@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,11 @@
 <!-- lien librarie jQuery et Javascript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="connexion.jsp">TrocEnchères.0rg</a>
+  <a class="navbar-brand" href="<%= request.getContextPath()%>/listeencheres">TrocEnchères.0rg</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -52,7 +52,20 @@
 						<input type="text" class="form-control" name="article" />
 					</div>
 				</div>
-					
+				
+				<div class="row justify-content-center">
+					<div class="form-group col-sm-2">
+						<p>Catégorie</p>
+					</div>
+					<div class="form-group col-sm-4">
+						<select name="categorie" size="1">
+							<c:forEach items="${requestScope.listeCategorie}" var ="c">
+								<option value="${c.getNoCategorie()}"><c:out value="${c.getLibelle()}" /></option>
+							</c:forEach>							
+						</select>
+					</div>
+				</div>
+				
 				<div class="row justify-content-center">
 					<div class="form-group col-sm-2">
 						<p>Description</p>

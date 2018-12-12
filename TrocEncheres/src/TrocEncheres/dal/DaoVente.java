@@ -2,6 +2,7 @@ package TrocEncheres.dal;
 
 import java.util.List;
 
+import TrocEncheres.bo.Retrait;
 import TrocEncheres.bo.Vente;
 
 /**
@@ -11,7 +12,7 @@ import TrocEncheres.bo.Vente;
  */
 public interface DaoVente {
 
-	void Insert(Vente vente, int no_utilisateur) throws DALException;
+	void Insert(Vente vente, int no_utilisateur, int idCateg, Retrait retrait) throws DALException;
 	
 	List<Vente> listVente() throws DALException;
 	

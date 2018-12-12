@@ -18,17 +18,17 @@ import TrocEncheres.dal.DaoUtilisateur;
 
 public class DaoUtilisateurImpl implements DaoUtilisateur {
 
-	private static final String INSERT = "insert into UTILISATEURS(pseudo," + "nom," + "prenom," + "email,"
-			+ "telephone," + "rue," + "code_postal," + "ville," + "mot_de_passe," + "credit,"
-			+ "administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String UPDATE = "update UTILISATEURS set pseudo=?," + "nom=?," + "prenom?," + "email=?,"
-			+ "telephone=?," + "rue=?," + "code_postal=?," + "ville=?," + "mot_de_passe=?," + "where id=?;";
+	private static final String INSERT = "insert into UTILISATEURS(pseudo, nom, prenom, email,"
+			+ " telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String UPDATE = "update UTILISATEURS set pseudo=?, nom=?, prenom=?, email=?,"
+			+ " telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? where no_utilisateur=?;";
 	private static final String SELECTUSER = "select pseudo, mot_de_passe from UTILISATEURS where pseudo=?;";
 	private static final String SELECTNOUSER = "select no_utilisateur from UTILISATEURS where pseudo=? ";
 	private static final String SELECTALL = "select no_utilisateur, pseudo, nom, prenom, email, telephone, "
 			+ "rue, code_postal, ville, mot_de_passe, credit, administrateur from UTILISATEURS "
 			+ "where no_utilisateur = ?";
-	
+	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
+
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
@@ -106,7 +106,7 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 			stmt.setString(7, utilisateur.getCodePostal());
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMotDePasse());
-			stmt.setString(9, utilisateur.getMotDePasse());
+			stmt.setInt(10, utilisateur.getNoUtilisateur());
 
 			stmt.executeUpdate();
 
@@ -241,6 +241,23 @@ public class DaoUtilisateurImpl implements DaoUtilisateur {
 		}
 		
 		return utilisateur;
+	}
+	
+	@Override
+	public void Delete(int idUtilisateur) throws DALException {
+		// TODO Auto-generated method stub
+		try {
+			// Récupérer la connexion
+			conn = ConnectionProvider.getConnection();
+			// Préparer la requete
+			stmt = conn.prepareStatement(DELETE);
+			stmt.setInt(1, idUtilisateur);
+			// exécution
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

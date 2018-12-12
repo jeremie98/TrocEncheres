@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,7 @@
 			
 			<div class="row justify-content-center">
 				<div class="form-group col-sm-5">		
-					<input type="text" class="form-control" name="tel" placeholder="Telephone" />
+					<input type="number" class="form-control" name="tel" placeholder="Telephone" />
 				</div>
 				<div class="form-group col-sm-5">
 					<input type="text" class="form-control" name="rue" placeholder="Rue" />
@@ -83,6 +84,19 @@
 			</div>
 			
 		</form>
+		<div>
+			<!-- Affichage des erreurs-->
+			<c:if test="${!requestScope.erreurs.isEmpty()}">
+				<c:forEach items="${requestScope.erreurs }" var="e">
+					<ul>
+						<li><c:out value="${e }"></c:out></li>
+					</ul>
+				</c:forEach>
+			</c:if>
+			<c:if test="${requestScope.mdpincorrect != null}">
+				<c:out value="${requestScope.mdpincorrect}"></c:out>
+			</c:if>		
+		</div>
 	</div>	
 	
 

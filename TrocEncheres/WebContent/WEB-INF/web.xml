@@ -13,6 +13,14 @@
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>ServletEnchere</servlet-name>
+    <servlet-class>TrocEncheres.ihm.ServletEnchere</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletEnchere</servlet-name>
+    <url-pattern>/enchere</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ServletListeEncheres</servlet-name>
     <servlet-class>TrocEncheres.ihm.ServletListeEncheres</servlet-class>
   </servlet>
