@@ -29,9 +29,6 @@ public class DaoVenteImpl implements DaoVente{
 															+ "prix_vente,"
 															+ "no_utilisateur,"
 															+ "no_categorie) values (?,?,?,?,?,?,?)";
-	private static final String UPDATE = "update VENTES set  prix_vente=?;";
-	private static final String SELECT = "select nomarticle from VENTES where nomarticle=? ;";
-	private static final String SELECTCATEG =  "select no_categorie FROM CATEGORIE where libelle=?; ";
 	private static final String SELECTAllVENTE = "select no_vente, nomarticle, description, date_fin_encheres ,prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES";
 	private static final String INSERTRETRAIT =  "insert into RETRAITS (no_vente, rue, code_postal, ville) values (?,?,?,?)";
 	private static final String SELECTRETRAIT = "select no_vente, rue, code_postal, ville FROM RETRAITS where no_vente=?;";

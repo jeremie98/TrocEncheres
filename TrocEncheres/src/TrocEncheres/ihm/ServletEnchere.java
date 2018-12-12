@@ -27,7 +27,7 @@ public class ServletEnchere extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupération des informations de la vente
-		
+		System.out.println(request.getParameter("noVente"));
 		
 		// redirection vers la page de détails d'une vente
 		request.getRequestDispatcher("WEB-INF/detailvente.jsp").forward(request, response);

@@ -22,8 +22,11 @@
 	
 		<!--  Debut div container -->
 	<div class="container">
-			<h3 class="text-center">Détail Vente</h3>
+		<h2 class="text-center">Détail Vente</h2>
 			
+			
+			
+		
 			<div class="row justify-content-md-center">
 				
 					<h5><span class="badge badge-primary">Scouter rose</span></h5>
@@ -35,7 +38,7 @@
 					<p>Description : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>It's over 9 000</p>
+					<p>It's over 9 000 !!!!!!!!!! !!!!! !! !!!! !!!!!!! !!!!! !!!!!!!!! !!!!!!!!!!! !</p>
 	    		</div>
 	  		</div>
 	  		
@@ -71,8 +74,8 @@
 					<p>Retrait : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>10 allée des Flamboyant</p>
-					<p>Saint-Francois</p>
+					<p>10 allée des Flamboyant<br>
+					Saint-Francois</p>
 	    		</div>
 	  		</div>
   		
@@ -84,7 +87,21 @@
 					<p>Vegeta</p>
 	    		</div>
 	  		</div>
-	</div>
+  		
+	  		<form class="row justify-content-center">
+				<div class="col-sm-3">
+					<p>Ma proposition : </p>
+	    		</div>
+				<div class="col-sm-3">
+					<input type="number" class="form-control" name="howmuch" value="9000" min="9000">
+					<p></p><button type="submit" class="btn btn-primary">Enchérir</button>
+					<a href="<%= request.getContextPath()%>/listeencheres"><button type="button" class="btn btn-secondary">Retour</button></a>
+	    		</div>
+	    		
+	  		</form>
+  		
+  		
+	</div>	
 	<!--  Fin div container -->
 </body>
 </html>
