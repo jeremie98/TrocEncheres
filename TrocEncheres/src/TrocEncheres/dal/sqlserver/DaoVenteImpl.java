@@ -32,10 +32,10 @@ public class DaoVenteImpl implements DaoVente{
 	private static final String UPDATE = "update VENTES set  prix_vente=?;";
 	private static final String SELECT = "select nomarticle from VENTES where nomarticle=? ;";
 	private static final String SELECTCATEG =  "select no_categorie FROM CATEGORIE where libelle=?; ";
-	private static final String SELECTAllVENTE = "select nomarticle, description, date_fin_encheres ,prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES";
+	private static final String SELECTAllVENTE = "select no_vente, nomarticle, description, date_fin_encheres ,prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES";
 	private static final String INSERTRETRAIT =  "insert into RETRAITS (no_vente, rue, code_postal, ville) values (?,?,?,?)";
-	private static final String SELECTRETRAIT = "select no_vente, rue, code_postal, ville FROM RETRAITS where id=?;";
-
+	private static final String SELECTRETRAIT = "select no_vente, rue, code_postal, ville FROM RETRAITS where no_vente=?;";
+	private static final String SELECTPSEUDOVENTE = "select pseudo from UTILISATEURS U inner join VENTES V on U.no_utilisateur = V.no_utilisateur where no_vente = ?";
 	
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -78,53 +78,27 @@ public class DaoVenteImpl implements DaoVente{
 					stmt2.setString(4, retrait.getVille());
 					
 					stmt2.executeUpdate();
-					
-				}
-				
-				
-				
-				
-			}
-			
-			
-			
-			
-			stmt = conn.prepareStatement(INSERTRETRAIT);
-			
+				}				
+			}			
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
-
-			try {
-
-				throw new DALException("Erreur insert", e);
-			} catch (DALException e1) {
-
-				e1.printStackTrace();
-			}
+			throw new DALException("InsertVente failed--------", e);
+			
 		} finally {
-
-			// Fermer la connexion
-			if (conn != null) {
-				try {
-					conn.close();
-					
-				} catch (SQLException e) {
-
-					try {
-						rs = stmt.getGeneratedKeys();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
+			try {
+				if (rs != null){
+					rs.close();
 				}
-
+				if (st != null){
+					st.close();
+				}
+				if(conn!=null){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				throw new DALException("close failed " , e);
 			}
-
 		}
-		
 	}
 
 	@Override
@@ -155,7 +129,8 @@ public class DaoVenteImpl implements DaoVente{
 			
 			while(rs.next()) {
 				
-				vente = new Vente(rs.getString("nomarticle"),
+				vente = new Vente(rs.getInt("no_vente"),
+								  rs.getString("nomarticle"),
 								  rs.getString("description"),
 								  rs.getDate("date_fin_encheres"),
 								  rs.getInt("prix_initial"),
@@ -169,56 +144,101 @@ public class DaoVenteImpl implements DaoVente{
 		}catch (SQLException e) {
 				
 				e.printStackTrace();
-			}finally {
-				try {
-					if (rs != null){
-						rs.close();
-					}
-					if (st != null){
-						st.close();
-					}
-					if(conn!=null){
-						conn.close();
-					}
-				} catch (SQLException e) {
-					throw new DALException("close failed " , e);
+		}finally {
+			try {
+				if (rs != null){
+					rs.close();
 				}
+				if (st != null){
+					st.close();
+				}
+				if(conn!=null){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				throw new DALException("close failed " , e);
 			}
+		}
 		
 		return listVentes;
 	}
 	
-	public Retrait retrait(int id) throws DALException {
+	@Override
+	public Retrait selectRetrait(int no_vente) throws DALException {
 		Retrait retrait = null;
-		
+		try {
+			// récupération de la connexion
+			conn = ConnectionProvider.getConnection();
 			
-			try {
-				conn = ConnectionProvider.getConnection();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			// préparation de la requête
+			stmt = conn.prepareStatement(SELECTRETRAIT);
+			stmt.setInt(1, no_vente);
+			// exécution de la requête
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				retrait = new Retrait(rs.getInt("no_vente"), rs.getString("rue"), 
+						rs.getString("code_postal"), rs.getString("ville"));
 			}
 			
+		} catch(SQLException e){
+			throw new DALException("SelectRetrait failed -----", e);
+
+		} finally {
+
 			try {
-				st = conn.createStatement();
+				if (stmt != null) {
+
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
-			try {
-				rs = st.executeQuery(SELECTRETRAIT);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-	
-		
-		
-		
-		
+		}
 		return retrait;
 		
+	}
+
+	@Override
+	public String selectPseudoVente(int no_vente) throws DALException {
+		String pseudo = null;
+		try {
+			// récupération de la connexion
+			conn = ConnectionProvider.getConnection();
+			
+			// préparation de la requête
+			stmt = conn.prepareStatement(SELECTPSEUDOVENTE);
+			stmt.setInt(1, no_vente);
+			// exécution de la requête
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				pseudo = rs.getString("pseudo");
+			}
+		} catch(SQLException e){
+			throw new DALException("SelectPseudoVente failed -----", e);
+
+		} finally {
+			try {
+				if (stmt != null) {
+
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return pseudo;
 	}
 
 }

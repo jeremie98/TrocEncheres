@@ -16,22 +16,74 @@
 <title>Détail Vente</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" href="<%= request.getContextPath()%>/listeencheres">TrocEnchères.0rg</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	    <div class="nav navbar-nav ">
-	      <a href="<%= request.getContextPath() %>/profil" ><span class="glyphicon glyphicon-user "> Mon profil</span></a>
-	      <a href="<%= request.getContextPath() %>/#" ><span class="glyphicon glyphicon-log-iout"> Déconnexion</span></a>
-	    </div>
-	  </div>
-	</nav>
-	<!--  Debut div container -->
+
+	<!-- Inclusion de la barre de navigation presnete dans fichier navbar.html -->
+	<%@ include file="../pages/navbar.jsp" %>
+	
+		<!--  Debut div container -->
 	<div class="container">
 			<h3 class="text-center">Détail Vente</h3>
 			
+			<div class="row justify-content-md-center">
+				
+					<h5><span class="badge badge-primary">Scouter rose</span></h5>
+	    		
+	  		</div>
+			<div class="row justify-content-center">
+			
+				<div class="col-sm-3">
+					<p>Description : </p>
+	    		</div>
+				<div class="col-sm-3">
+					<p>It's over 9 000</p>
+	    		</div>
+	  		</div>
+	  		
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+					<p>Meilleure offre : </p>
+	    		</div>
+				<div class="col-sm-3">
+					<p>9 001 points par Kakarot </p>
+	    		</div>
+	  		</div>
+  		
+			<div class="row justify-content-center">
+				<div class="col-sm-3">
+					<p>Mise à prix : </p>
+	    		</div>
+				<div class="col-sm-3">
+					<p>9 000 points</p>
+	    		</div>
+	  		</div>
+	  		
+	  		<div class="row justify-content-center">
+				<div class="col-sm-3">
+					<p>Fin de l'enchère : </p>
+	    		</div>
+				<div class="col-sm-3">
+					<p>13/12/2018</p>
+	    		</div>
+	  		</div>
+  		
+	  		<div class="row justify-content-center">
+				<div class="col-sm-3">
+					<p>Retrait : </p>
+	    		</div>
+				<div class="col-sm-3">
+					<p>10 allée des Flamboyant</p>
+					<p>Saint-Francois</p>
+	    		</div>
+	  		</div>
+  		
+	  		<div class="row justify-content-center">
+				<div class="col-sm-3">
+					<p>Veudeur : </p>
+	    		</div>
+				<div class="col-sm-3">
+					<p>Vegeta</p>
+	    		</div>
+	  		</div>
 	</div>
 	<!--  Fin div container -->
 </body>

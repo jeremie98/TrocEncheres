@@ -96,9 +96,46 @@ public class VenteMger {
 		}
 		
 		return listVentes;
-		
-		
 	}
+	
+	/**
+	 * Renvoie les informations de retrait concernant la vente
+	 * @param no_vente
+	 * @return l'adresse du retrait
+	 * @throws BLLException
+	 */
+	public Retrait selectRetrait(int no_vente) throws BLLException{
+		Retrait retrait = null;
+		try {
+			retrait = daoVente.selectRetrait(no_vente);
+		}catch (DALException e) {
+			
+			throw new BLLException("SelectRetrait failed ------", e);
+		}
+		return retrait;
+	}
+	
+	/**
+	 * Renvoie le pseudo associé à la vente grâce à l'id de la vente
+	 * @param no_vente
+	 * @return un pseudo
+	 * @throws BLLException
+	 */
+	public String selectPseudoVente(int no_vente) throws BLLException{
+		String pseudo = null;
+		try {
+			pseudo = daoVente.selectPseudoVente(no_vente);
+		}catch (DALException e) {
+			
+			throw new BLLException("SelectPseudoVente failed ------", e);
+		}
+		return pseudo;
+	}
+	
+	/**
+	 * Renvoie une liste d'erreurs 
+	 * @return une liste d'erreurs relatives aux requêtes d'insertion, de mise à jours
+	 */
 	public List<String> getErreurs(){
 		return erreurs;
 	}

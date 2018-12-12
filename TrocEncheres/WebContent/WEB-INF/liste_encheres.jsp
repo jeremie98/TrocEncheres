@@ -55,14 +55,12 @@
 							<img name="img.png" src="img.png" class="img-fluid" alt="imageArticle">
 							<div class="col">
 							
-								<p>Article : ${vente.getNomArticle() }<br>
+								<p>Article : <a href="<%= request.getContextPath() %>/enchere" class="badge badge-primary">${vente.getNomArticle() }</a><br>
 								Prix : ${vente.getDescription() }<br>
 								Fin de l'enchère : ${vente.getDateFinEncheres()}<br>
-								Retrait : <br>
-								Vendeur : </p>
+								Retrait : ${venteManager.selectRetrait(vente.getNoVente()).getRue()}<br>
+								Vendeur : ${venteManager.selectPseudoVente(vente.getNoVente()) }</p>
 
-							
-							
 							</div>
 						</div>
 						
