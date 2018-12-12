@@ -20,4 +20,8 @@ public interface DaoVente {
 	
 	void Update(Vente vente) throws DALException;
 	
+	Retrait selectRetrait(int no_vente) throws DALException;
+	
+	String selectPseudoVente(int no_vente) throws DALException;
+	
 }

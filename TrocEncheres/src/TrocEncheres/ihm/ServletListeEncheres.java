@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import TrocEncheres.bll.BLLException;
 import TrocEncheres.bll.VenteMger;
+import TrocEncheres.bo.Retrait;
 import TrocEncheres.bo.Vente;
 
 /**
@@ -33,18 +34,20 @@ public class ServletListeEncheres extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// redirection vers la page d'accueil
-				VenteMger venteManag = new VenteMger();
-				List<Vente> listVentes =  new ArrayList<Vente>();
-				try {
-					listVentes = venteManag.listVente();
-					request.setAttribute("listVentes", listVentes);
-					
-					request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
-				} catch (BLLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		VenteMger venteManag = new VenteMger();
+		// envoi d'un objet VenteMger à la JSP
+		request.setAttribute("venteManager", venteManag);
+		try {
+			List<Vente> listeVentes = venteManag.listVente();
+			// récupération de la liste de ventes
+			request.setAttribute("listVentes",listeVentes);
+			
+			// redirection vers la page d'accueil
+			request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

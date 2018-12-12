@@ -45,7 +45,6 @@ public class Vente {
 	public Vente(String nomArticle, String description, Date dateFinEncheres, int miseAPrix, int prixVente,
 			int id_user, int id_categ) {
 		super();
-		this.noVente = noVente;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateFinEncheres = new Date (dateFinEncheres.getTime());
