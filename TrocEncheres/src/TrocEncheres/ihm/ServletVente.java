@@ -40,27 +40,27 @@ public class ServletVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// redirection vers la page de nouvelle vente
 		// affichage des catégories dans la liste déroulante
-				CategorieMger categorieMger = new CategorieMger();
-				UtilisateurMger userM = new UtilisateurMger();
-				Utilisateur user = null;
-				try {
-					user = userM.selectAll((Integer)request.getSession().getAttribute("idutilisateur"));
-				} catch (BLLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				try {
-					
-					request.setAttribute("listeCategorie", categorieMger.selectAll());
-					request.setAttribute("rue", user.getRue() );
-					request.setAttribute("cp", user.getCodePostal());
-					request.setAttribute("ville", user.getVille() );
-				} catch (BLLException e) {
-					e.printStackTrace();
-				}
-				
-				// redirection vers la page de nouvelle vente
-				request.getRequestDispatcher("WEB-INF/vendre.jsp").forward(request, response);
+		CategorieMger categorieMger = new CategorieMger();
+		UtilisateurMger userM = new UtilisateurMger();
+		Utilisateur user = null;
+		try {
+			user = userM.selectAll((Integer)request.getSession().getAttribute("idutilisateur"));
+		} catch (BLLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			
+			request.setAttribute("listeCategorie", categorieMger.selectAll());
+			request.setAttribute("rue", user.getRue() );
+			request.setAttribute("cp", user.getCodePostal());
+			request.setAttribute("ville", user.getVille() );
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		
+		// redirection vers la page de nouvelle vente
+		request.getRequestDispatcher("WEB-INF/vendre.jsp").forward(request, response);
 	}
 
 	/**

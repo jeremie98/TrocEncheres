@@ -33,6 +33,7 @@ public class DaoVenteImpl implements DaoVente{
 	private static final String INSERTRETRAIT =  "insert into RETRAITS (no_vente, rue, code_postal, ville) values (?,?,?,?)";
 	private static final String SELECTRETRAIT = "select no_vente, rue, code_postal, ville FROM RETRAITS where no_vente=?;";
 	private static final String SELECTPSEUDOVENTE = "select pseudo from UTILISATEURS U inner join VENTES V on U.no_utilisateur = V.no_utilisateur where no_vente = ?";
+	private static final String SELECTVENTEBYID = "select * from VENTES where no_vente = ?";
 	
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -236,6 +237,51 @@ public class DaoVenteImpl implements DaoVente{
 			}
 		}
 		return pseudo;
+	}
+
+	@Override
+	public Vente selectById(int no_vente) throws DALException {
+		Vente vente = null;
+		try {
+			// récupération de la connexion
+			conn = ConnectionProvider.getConnection();
+			
+			// préparation de la requête
+			stmt = conn.prepareStatement(SELECTVENTEBYID);
+			stmt.setInt(1, no_vente);
+			// exécution de la requête
+			rs = stmt.executeQuery();
+			// traitement
+			if(rs.next()) {
+				vente = new Vente(rs.getInt("no_vente"),
+						  rs.getString("nomarticle"),
+						  rs.getString("description"),
+						  rs.getDate("date_fin_encheres"),
+						  rs.getInt("prix_initial"),
+						  rs.getInt("prix_vente"),
+						  rs.getInt("no_utilisateur"),
+						  rs.getInt("no_categorie"));
+			}
+			
+		} catch(SQLException e){
+			throw new DALException("SelectVenteById failed -----", e);
+
+		} finally {
+			try {
+				if (stmt != null) {
+
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return vente;
 	}
 
 }

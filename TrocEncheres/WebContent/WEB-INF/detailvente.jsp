@@ -29,7 +29,7 @@
 		
 			<div class="row justify-content-md-center">
 				
-					<h5><span class="badge badge-primary">Scouter rose</span></h5>
+					<h5><span class="badge badge-primary"><c:out value="${requestScope.nomArticle }"/></span></h5>
 	    		
 	  		</div>
 			<div class="row justify-content-center">
@@ -38,7 +38,7 @@
 					<p>Description : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>It's over 9 000 !!!!!!!!!! !!!!! !! !!!! !!!!!!! !!!!! !!!!!!!!! !!!!!!!!!!! !</p>
+					<c:out value="${requestScope.description }" />
 	    		</div>
 	  		</div>
 	  		
@@ -47,7 +47,7 @@
 					<p>Meilleure offre : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>9 001 points par Kakarot </p>
+					<c:out value="${requestScope.meilleureOffre }" />
 	    		</div>
 	  		</div>
   		
@@ -56,7 +56,7 @@
 					<p>Mise à prix : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>9 000 points</p>
+					<c:out value="${requestScope.miseAPrix }" />
 	    		</div>
 	  		</div>
 	  		
@@ -65,7 +65,7 @@
 					<p>Fin de l'enchère : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>13/12/2018</p>
+					<c:out value="${requestScope.finEnchere }" />
 	    		</div>
 	  		</div>
   		
@@ -74,26 +74,27 @@
 					<p>Retrait : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>10 allée des Flamboyant<br>
-					Saint-Francois</p>
+					<c:out value="${requestScope.retrait }" />
+
 	    		</div>
 	  		</div>
   		
 	  		<div class="row justify-content-center">
 				<div class="col-sm-3">
-					<p>Veudeur : </p>
+					<p>Vendeur : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<p>Vegeta</p>
+					<c:out value="${requestScope.vendeur }" />
 	    		</div>
 	  		</div>
   		
-	  		<form class="row justify-content-center">
+	  		<form method="post" action="<%= request.getContextPath() %>/enchere" class="row justify-content-center">
 				<div class="col-sm-3">
 					<p>Ma proposition : </p>
 	    		</div>
 				<div class="col-sm-3">
-					<input type="number" class="form-control" name="howmuch" value="9000" min="9000">
+					<input type="number" class="form-control" name="proposition" value="${requestScope.proposition }" min="${requestScope.miseAPrix }">
+					<input type="hidden" name="noVente" value="${requestScope.numeroVente }"/>
 					<p></p><button type="submit" class="btn btn-primary">Enchérir</button>
 					<a href="<%= request.getContextPath()%>/listeencheres"><button type="button" class="btn btn-secondary">Retour</button></a>
 	    		</div>

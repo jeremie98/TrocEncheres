@@ -69,4 +69,25 @@ public class DaoFactory {
 		}
 		return daoCategorie; 
 	}
+	
+	/**
+	 * Méthode qui renvoie une instance de Enchere
+	 * @return une nouvelle enchere
+	 */
+	public static DaoEnchere getEnchereDAO()  {
+		DaoEnchere daoEnchere =null;
+		try {
+			daoEnchere=(DaoEnchere ) Class.forName("TrocEncheres.dal.sqlserver.DaoEnchereImpl").newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return daoEnchere; 
+	}
 }
