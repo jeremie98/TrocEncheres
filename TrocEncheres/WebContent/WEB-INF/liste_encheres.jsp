@@ -29,7 +29,7 @@
 			<!-- Checkboxes de filtre -->
 			<div class="col sm">
 				<div class="form-check justify-content-center">
-					<input class="form-check-input" type="checkbox" value="" name="vente">
+					<input class="form-check-input" type="checkbox" value="mesVentes" id="customCheck1" name="mesenchere">
 					<label class="form-check-label" for="defaultCheck1"> Mes ventes</label>
 				</div>
 				<div class="form-check">

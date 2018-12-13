@@ -23,11 +23,11 @@
 
 		<h2 class="text-center">Profil</h2>
 
-		<div class="border border-primary">
+		<div class="row justify-content-center">
 				<div class="form-group col-sm-2">
-					<div class="d-inline-flex p-3">Pseudo :</div>
+					<div class="d-inline-flex p-2">Pseudo :</div>
 				</div>
-				<div class="form-group col-sm-1">
+				<div class="form-group col-sm-2">
 					<div class="d-inline-flex p-2"><c:out value="${requestScope.pseudo }"/></div>
 				</div>
 			</div>

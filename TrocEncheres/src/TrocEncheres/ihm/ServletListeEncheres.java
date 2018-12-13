@@ -29,12 +29,32 @@ public class ServletListeEncheres extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// redirection vers la page d'accueil
+		VenteMger venteManag = new VenteMger();
+		request.setAttribute("venteManager", venteManag);
+
+		List<Vente> listVentes =  new ArrayList<Vente>();
+		
+		try {
+			listVentes = venteManag.listVente();
+			request.setAttribute("listVentes", listVentes);
+			request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
+			
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		VenteMger venteManag = new VenteMger();
+		request.setAttribute("venteManager", venteManag);
+
 		List<Vente> listVenteById;
 		
 		List<Vente> listVentes =  new ArrayList<Vente>();
@@ -50,14 +70,9 @@ public class ServletListeEncheres extends HttpServlet {
 				request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
 				
 			}else if (request.getParameter("mesenchere").equals("mesVentes")) {
-				
-				
-				System.out.println(request.getParameter("mesenchere"));
-			
+							
 				listVenteById = venteManag.venteById((Integer)request.getSession().getAttribute("idutilisateur"));
-				System.out.println(listVenteById.toString());
 				request.setAttribute("listVentes", listVenteById);
-				System.out.println(listVenteById.toString());
 				request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
 			}
 		}
