@@ -47,22 +47,24 @@ public class ServletListeEncheres extends HttpServlet {
 		List<Vente> listVenteById;
 		
 		List<Vente> listVentes =  new ArrayList<Vente>();
-		try {
-			listVentes = venteManag.listVente();
-			request.setAttribute("listVentes", listVentes);
-			
-			request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		
 		
 		try {
-			if (request.getParameter("mesencheres").equals("mesVentes")) {
-			
+			if (request.getParameter("mesenchere") == null) {
+				
+				listVentes = venteManag.listVente();
+				request.setAttribute("listVentes", listVentes);
+				
+					request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
+				
+			}else if (request.getParameter("mesenchere").equals("mesVentes")) {
+				
+				
+				System.out.println(request.getParameter("mesenchere"));
 			
 			listVenteById = venteManag.venteById((Integer)request.getSession().getAttribute("idutilisateur"));
+			System.out.println(listVenteById.toString());
 			request.setAttribute("listVentes", listVenteById);
 			System.out.println(listVenteById.toString());
 			request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
@@ -72,6 +74,8 @@ public class ServletListeEncheres extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 	}
 

@@ -35,7 +35,7 @@ public class DaoVenteImpl implements DaoVente{
 	private static final String SELECTAllVENTE = "select nomarticle, description, date_fin_encheres ,prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES";
 	private static final String INSERTRETRAIT =  "insert into RETRAITS (no_vente, rue, code_postal, ville) values (?,?,?,?)";
 	private static final String SELECTRETRAIT = "select no_vente, rue, code_postal, ville FROM RETRAITS where id=?;";
-	private static final String SELECTBYID = " select nomarticle, description, date_fin_encheres, prix initial, prix_vente, no_utilisateur, no_categorie FROM VENTES where no_utilisateur=?;";
+	private static final String SELECTBYID = " select nomarticle, description, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES where no_utilisateur=?;";
 	
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -228,7 +228,7 @@ public class DaoVenteImpl implements DaoVente{
 			
 			while(rs.next()) {
 				
-				vente = new Vente(rs.getInt("no_vente"),rs.getString("nomarticle"),rs.getString("description"),rs.getDate("date_fin_encheres"),rs.getInt("prix_initial"),rs.getInt("prixvente"),
+				vente = new Vente(rs.getString("nomarticle"),rs.getString("description"),rs.getDate("date_fin_encheres"),rs.getInt("prix_initial"),rs.getInt("prix_vente"),
 						rs.getInt("no_utilisateur"),rs.getInt("no_categorie"));
 				
 				listVenteId.add(vente);
