@@ -148,6 +148,24 @@ public class VenteMger {
 		return  vente;
 	}
 	
+	
+	public List<Vente> venteById(int id) throws BLLException {
+		List<Vente> listVenteId = new ArrayList<>();;
+		try {
+			
+			
+			listVenteId = daoVente.venteById(id);
+			
+		}catch (DALException e) {
+			
+			throw new BLLException("Select by id failed ------", e);
+		}
+		
+		return listVenteId;
+		
+		
+	}
+	
 	/**
 	 * Renvoie une liste d'erreurs 
 	 * @return une liste d'erreurs relatives aux requêtes d'insertion, de mise à jours

@@ -95,6 +95,8 @@ public class ServletVente extends HttpServlet {
 			
 			try {
 				venteManag.insert(vente, id, id_categ, retrait);
+				request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
+			
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -26,6 +26,7 @@
 	Barre de recherche ne fonctionne pas correctement ! a remplacer !!! 
 	/!\/!\ -->
 				<input class="form-control" id="myInput" type="text" placeholder="Search..">
+				<form method="POST" action="<%= request.getContextPath() %>/listeencheres" class="form-group" >
 		<div class="row justify-content-center">
 			<!-- Checkboxes de filtre -->
 			<div class="col sm">
@@ -45,8 +46,12 @@
 					<input class="form-check-input" type="checkbox" value="" name="autre">
 					<label class="form-check-label" for="defaultCheck1"> Autres enchères</label>
 				</div>
+			<button type="submit" class="btn btn-success">Filtrer</button>
+				
 			</div>
 		</div>
+				</form>
+		
 			<c:forEach var="vente" items="${requestScope.listVentes}">
 			<div class="col sm" id="myDIV">
 					

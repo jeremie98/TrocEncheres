@@ -30,6 +30,7 @@ public class DaoVenteImpl implements DaoVente{
 															+ "no_utilisateur,"
 															+ "no_categorie) values (?,?,?,?,?,?,?)";
 	private static final String SELECTAllVENTE = "select no_vente, nomarticle, description, date_fin_encheres ,prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES";
+	private static final String SELECTBYID = " select nomarticle, description, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie FROM VENTES where no_utilisateur=?;";
 	private static final String INSERTRETRAIT =  "insert into RETRAITS (no_vente, rue, code_postal, ville) values (?,?,?,?)";
 	private static final String SELECTRETRAIT = "select no_vente, rue, code_postal, ville FROM RETRAITS where no_vente=?;";
 	private static final String SELECTPSEUDOVENTE = "select pseudo from UTILISATEURS U inner join VENTES V on U.no_utilisateur = V.no_utilisateur where no_vente = ?";
@@ -282,6 +283,36 @@ public class DaoVenteImpl implements DaoVente{
 			}
 		}
 		return vente;
+	}
+	
+	public List<Vente> venteById(int id) throws DALException{
+		
+		Vente vente = null;
+		List<Vente> listVenteId = new ArrayList<>();
+		try {
+			
+			conn = ConnectionProvider.getConnection();
+			
+			stmt = conn.prepareStatement(SELECTBYID);
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				vente = new Vente(rs.getString("nomarticle"),rs.getString("description"),rs.getDate("date_fin_encheres"),rs.getInt("prix_initial"),rs.getInt("prix_vente"),
+						rs.getInt("no_utilisateur"),rs.getInt("no_categorie"));
+				
+				listVenteId.add(vente);
+				
+			}
+			
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return listVenteId;
+		
 	}
 
 }

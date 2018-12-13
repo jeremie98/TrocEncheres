@@ -22,6 +22,8 @@
 	
 	<div class="container">
 		<h2 class="text-center">Nouvelle vente</h2>
+	<form method="POST" action="<%= request.getContextPath()%>/nouvellevente">
+		
 		<div class="row">
 			<div class="col-1">
 				<img id="image"/>
@@ -107,7 +109,7 @@
 						<p>Rue</p>
 					</div>
 					<div class="form-group col-sm-3">
-						<input type="text" class="form-control" name="rue" />
+						<input type="text" class="form-control" name="rue" value="${requestScope.rue }"/>
 					</div>
 				</div>
 				
@@ -116,7 +118,7 @@
 						<p>Code postal</p>
 					</div>
 					<div class="form-group col-sm-3">
-						<input type="text" class="form-control" name="codeP" />
+						<input type="text" class="form-control" name="cp" value="${requestScope.cp }"/>
 					</div>
 				</div>
 				
@@ -125,7 +127,7 @@
 						<p>Ville</p>
 					</div>
 					<div class="form-group col-sm-3">
-						<input type="text" class="form-control" name="ville" />
+						<input type="text" class="form-control" name="ville" value="${requestScope.ville }"/>
 					</div>
 				</div>
 						<div class="row justify-content-center">
@@ -137,6 +139,7 @@
 				</div>
 			</div>
 		</div>
+				</form>
 		
 	<!-- Fin div container -->
 	</div>
