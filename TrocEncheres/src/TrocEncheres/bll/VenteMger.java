@@ -133,6 +133,40 @@ public class VenteMger {
 	}
 	
 	/**
+	 * Renvoie la vente en fonction de son id
+	 * @param no_vente
+	 * @return une vente
+	 * @throws BLLException
+	 */
+	public Vente selectById(int no_vente) throws BLLException{
+		Vente vente = null;
+		try {
+			vente = daoVente.selectById(no_vente);
+		} catch(DALException e) {
+			throw new BLLException("SelectById failed --------", e);
+		}
+		return  vente;
+	}
+	
+	
+	public List<Vente> venteById(int id) throws BLLException {
+		List<Vente> listVenteId = new ArrayList<>();;
+		try {
+			
+			
+			listVenteId = daoVente.venteById(id);
+			
+		}catch (DALException e) {
+			
+			throw new BLLException("Select by id failed ------", e);
+		}
+		
+		return listVenteId;
+		
+		
+	}
+	
+	/**
 	 * Renvoie une liste d'erreurs 
 	 * @return une liste d'erreurs relatives aux requêtes d'insertion, de mise à jours
 	 */

@@ -24,4 +24,8 @@ public interface DaoVente {
 	
 	String selectPseudoVente(int no_vente) throws DALException;
 	
+	Vente selectById(int no_vente) throws DALException;
+	
+	List<Vente> venteById(int id) throws DALException;
+
 }

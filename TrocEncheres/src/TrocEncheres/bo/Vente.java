@@ -183,7 +183,7 @@ public class Vente {
 	 * @param utilisateur
 	 */
 	public void setUtilisateur(int id) {
-		this.id_user = id_user;
+		this.id_user = id;
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class Vente {
 	 * @param categorie
 	 */
 	public void setCategorie(int id) {
-		this.id_categ = id_categ;
+		this.id_categ = id;
 	}
 	
 	

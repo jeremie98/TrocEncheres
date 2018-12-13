@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import TrocEncheres.bll.BLLException;
 import TrocEncheres.bll.VenteMger;
-import TrocEncheres.bo.Retrait;
 import TrocEncheres.bo.Vente;
 
 /**
@@ -30,22 +29,20 @@ public class ServletListeEncheres extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// redirection vers la page d'accueil
 		VenteMger venteManag = new VenteMger();
-		// envoi d'un objet VenteMger à la JSP
 		request.setAttribute("venteManager", venteManag);
+
+		List<Vente> listVentes =  new ArrayList<Vente>();
+		
 		try {
-			List<Vente> listeVentes = venteManag.listVente();
-			// récupération de la liste de ventes
-			request.setAttribute("listVentes",listeVentes);
-			
-			// redirection vers la page d'accueil
+			listVentes = venteManag.listVente();
+			request.setAttribute("listVentes", listVentes);
 			request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
+			
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -55,7 +52,37 @@ public class ServletListeEncheres extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		VenteMger venteManag = new VenteMger();
+		request.setAttribute("venteManager", venteManag);
+
+		List<Vente> listVenteById;
+		
+		List<Vente> listVentes =  new ArrayList<Vente>();
+
+		
+		
+		try {
+			if (request.getParameter("mesenchere") == null) {
+				
+				listVentes = venteManag.listVente();
+				request.setAttribute("listVentes", listVentes);
+				
+				request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
+				
+			}else if (request.getParameter("mesenchere").equals("mesVentes")) {
+							
+				listVenteById = venteManag.venteById((Integer)request.getSession().getAttribute("idutilisateur"));
+				request.setAttribute("listVentes", listVenteById);
+				request.getRequestDispatcher("WEB-INF/liste_encheres.jsp").forward(request, response);
+			}
+		}
+		catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 }

@@ -4,16 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Nouvelle vente</title>
-<meta charset="utf-8">
-<!-- lien vers feuille bootstrap -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
-
-<!-- lien librarie jQuery et Javascript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Nouvelle vente</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- lien vers feuille bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">	
+	<!-- lien librarie jQuery et Javascript -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -22,6 +21,8 @@
 	
 	<div class="container">
 		<h2 class="text-center">Nouvelle vente</h2>
+	<form method="POST" action="<%= request.getContextPath()%>/nouvellevente">
+		
 		<div class="row">
 			<div class="col-1">
 				<img id="image"/>
@@ -49,7 +50,7 @@
 						<p>Catégorie</p>
 					</div>
 					<div class="form-group col-sm-4">
-						<select name="categorie" size="1">
+						<select class="form-control" name="categorie" size="1">
 							<c:forEach items="${requestScope.listeCategorie}" var ="c">
 								<option value="${c.getNoCategorie()}"><c:out value="${c.getLibelle()}" /></option>
 							</c:forEach>							
@@ -107,7 +108,7 @@
 						<p>Rue</p>
 					</div>
 					<div class="form-group col-sm-3">
-						<input type="text" class="form-control" name="rue" />
+						<input type="text" class="form-control" name="rue" value="${requestScope.rue }"/>
 					</div>
 				</div>
 				
@@ -116,7 +117,7 @@
 						<p>Code postal</p>
 					</div>
 					<div class="form-group col-sm-3">
-						<input type="text" class="form-control" name="codeP" />
+						<input type="text" class="form-control" name="cp" value="${requestScope.cp }"/>
 					</div>
 				</div>
 				
@@ -125,7 +126,7 @@
 						<p>Ville</p>
 					</div>
 					<div class="form-group col-sm-3">
-						<input type="text" class="form-control" name="ville" />
+						<input type="text" class="form-control" name="ville" value="${requestScope.ville }"/>
 					</div>
 				</div>
 						<div class="row justify-content-center">
@@ -137,6 +138,7 @@
 				</div>
 			</div>
 		</div>
+				</form>
 		
 	<!-- Fin div container -->
 	</div>
