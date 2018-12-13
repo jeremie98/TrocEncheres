@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import TrocEncheres.bll.UtilisateurMger;
 import TrocEncheres.dal.DALException;
@@ -20,6 +21,8 @@ public class ServletDeleteUsers extends HttpServlet {
 		int idUtilisateur = (Integer) req.getSession().getAttribute("idutilisateur");
 		try {
 			userDel.delete(idUtilisateur);
+			HttpSession session = req.getSession(true);
+			session.invalidate();
 			req.getRequestDispatcher("WEB-INF/connexion.jsp").forward(req, resp);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
