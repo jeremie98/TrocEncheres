@@ -1,2 +1,3 @@
 # TrocEncheres
-Projet ENI
+
+Application de ventes aux enchères
